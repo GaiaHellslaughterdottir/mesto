@@ -1,0 +1,31 @@
+@import "../vendor/normalize.css";
+
+@import "../vendor/fonts/Inter/fonts.css";
+
+@import "../blocks/page/page.css";
+
+@import "../blocks/header/header.css";
+@import "../blocks/logo/logo.css";
+
+@import "../blocks/main/main.css";
+
+@import "../blocks/profile/profile.css";
+@import "../blocks/avatar/avatar.css";
+@import "../blocks/profile/__info/profile__info.css";
+@import "../blocks/profile/__info/_name/profile__info_name.css";
+@import "../blocks/profile/__info/_vocation/profile__info_vocation.css";
+@import "../blocks/profile/__edit-button/profile__edit-button.css";
+@import "../blocks/profile/__edit-button/_image/profile__edit-button_image.css";
+@import "../blocks/profile/__avatar-and-info/profile__avatar-and-info.css";
+@import "../blocks/profile/__add-button/profile__add-button.css";
+@import "../blocks/profile/__add-button/_image/profile__add-button_image.css";
+
+@import "../blocks/elements/elements.css";
+@import "../blocks/element/element.css";
+@import "../blocks/element/__image/element__image.css";
+@import "../blocks/element/__place-and-like/element__place-and-like.css";
+@import "../blocks/element/__like/element__like.css";
+@import "../blocks/element/__place/element__place.css";
+
+@import "../blocks/footer/footer.css";
+@import "../blocks/footer/__copyright/footer__copyright.css";
