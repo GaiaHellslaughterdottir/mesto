@@ -9,5 +9,6 @@
 @media screen and (max-width: 767px) {
   .profile__info_vocation {
     text-align: center;
+    margin: 14px 0 0 0;
   }
 }

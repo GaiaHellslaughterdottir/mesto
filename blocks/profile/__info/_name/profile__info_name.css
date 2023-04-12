@@ -10,5 +10,6 @@
   .profile__info_name {
     text-align: center;
     transform: translate(18px, 0);
+    margin-top: 26px;
   }
 }
