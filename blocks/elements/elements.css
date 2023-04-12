@@ -4,25 +4,14 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 17px;
+  row-gap: 20px;
+  column-gap: 17px;
   justify-content: center;
-}
-
-@media screen and (max-width: 1023px) {
-  .elements {
-    /*max-width: 560px;*/
-
-  }
 }
 
 @media screen and (max-width: 767px) {
   .elements {
     max-width: 282px;
     margin: 36px auto 0 auto;
-
-    /*
-    margin: 36px 19px 0 19px;
-    */
-
   }
 }

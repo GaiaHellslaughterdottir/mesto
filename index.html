@@ -18,21 +18,22 @@
     <div class="profile__avatar-and-info">
       <div class="avatar"></div>
       <div class="profile__info">
-        <div class="profile__info_name">Вася
-          <a class="profile__edit-button" href="#">
-            <img class="profile__edit-button_image" src="../mesto/images/profile-button.svg">
-          </a></div>
+        <div class="profile__info_name">
+          <span>Жак-Ив Кусто</span><a class="profile__edit-button" href="#"><img
+                class="profile__edit-button_image" src="../mesto/images/profile-button.svg" alt="Аватар">
+          </a>
+        </div>
         <p class="profile__info_vocation">Исследователь океана</p>
       </div>
     </div>
     <a class="profile__add-button" href="#">
-      <img class="profile__add-button_image" src="../mesto/images/plus.svg">
+      <img class="profile__add-button_image" src="../mesto/images/plus.svg" alt="Кнопка редактирования профиля">
     </a>
   </section>
 
   <section class="elements">
     <div class="element">
-      <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg">
+      <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Изображение">
       <div class="element__place-and-like">
         <div class="element__place">Карачаевск</div>
         <div class="element__like"></div>
@@ -40,7 +41,7 @@
     </div>
 
     <div class="element">
-      <img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg">
+      <img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg" alt="Изображение">
       <div class="element__place-and-like">
         <div class="element__place">Гора Эльбрус</div>
         <div class="element__like"></div>
@@ -48,7 +49,7 @@
     </div>
 
     <div class="element">
-      <img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg">
+      <img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg" alt="Изображение">
       <div class="element__place-and-like">
         <div class="element__place">Домбай</div>
         <div class="element__like"></div>
@@ -56,7 +57,7 @@
     </div>
 
     <div class="element">
-      <img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg">
+      <img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg" alt="Изображение">
       <div class="element__place-and-like">
         <div class="element__place">Гора Эльбрус</div>
         <div class="element__like"></div>
@@ -64,7 +65,7 @@
     </div>
 
     <div class="element">
-      <img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg">
+      <img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg" alt="Изображение">
       <div class="element__place-and-like">
         <div class="element__place">Домбай</div>
         <div class="element__like"></div>
@@ -72,7 +73,7 @@
     </div>
 
     <div class="element">
-      <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg">
+      <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Изображение">
       <div class="element__place-and-like">
         <div class="element__place">Карачаевск Карачаевск</div>
         <div class="element__like"></div>
@@ -84,7 +85,30 @@
     <div class="footer__copyright">© 2020 Mesto Russia</div>
   </footer>
 
+
+
 </main>
+
+<div class="popup" id="popup">
+  <div class="popup__overlay">
+
+  </div>
+
+  <div class="popup__container" id="popup__container">
+    <a class="popup__close-icon" href="#">
+      <img class="popup__close-icon_image" src="../mesto/images/close-icon.svg" alt="Иконка закрытия окна">
+    </a>
+    <div class="popup__rectangle">
+      <div class="popup__title">Редактировать профиль</div>
+      <label for="popup__field-name"></label>
+      <input type="text" class="popup__field" id="popup__field-name" placeholder="Жак-Ив Кусто">
+      <label for="popup__field-vocation"></label>
+      <input type="text" class="popup__field" id="popup__field-vocation" placeholder="Исследователь океана">
+      <a class="popup__button">Сохранить</a>
+    </div>
+  </div>
+
+</div>
 
 </body>
 </html>

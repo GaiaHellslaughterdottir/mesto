@@ -1,0 +1,7 @@
+.popup__close-icon {
+  margin: 0 0 auto auto;
+}
+
+.popup__close-icon:hover {
+  opacity: 60%;
+}

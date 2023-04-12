@@ -3,3 +3,8 @@
   margin-left: 10px;
   text-decoration: none;
 }
+
+.profile__edit-button:hover {
+  opacity: 60%;
+}
+

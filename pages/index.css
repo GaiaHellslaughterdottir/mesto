@@ -29,3 +29,13 @@
 
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__copyright/footer__copyright.css";
+
+@import "../blocks/popup/popup.css";
+@import "../blocks/popup/__overlay/popup__overlay.css";
+@import "../blocks/popup/__container/popup__container.css";
+@import "../blocks/popup/__close-icon/popup__close-icon.css";
+@import "../blocks/popup/__close-icon/_image/popup__close-icon_image.css";
+@import "../blocks/popup/__title/popup__title.css";
+@import "../blocks/popup/__rectangle/popup__rectangle.css";
+@import "../blocks/popup/__field/popup__field.css";
+@import "../blocks/popup/__button/popup__button.css";
