@@ -1,4 +1,4 @@
-.profile__info_vocation {
+.profile__info-vocation {
   font-size: 18px;
   font-weight: 400;
   color: #FFFFFF;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .profile__info_vocation {
+  .profile__info-vocation {
     font-size: 14px;
     text-align: center;
     margin: 8px 0 0 0;

@@ -14,20 +14,25 @@
 
 <main class="main">
 
+
+  //Добавить стиль в спан с именем и перенести туда стили из дива и контейнер переименовать
+  //потому что в спан нужно воткнуть стили, чтобы текст не расползался
+
   <section class="profile">
     <div class="profile__avatar-and-info">
       <div class="avatar"></div>
       <div class="profile__info">
-        <div class="profile__info_name">
-          <span>Жак-Ив Кусто</span><a class="profile__edit-button" href="#"><img
-                class="profile__edit-button_image" src="../mesto/images/profile-button.svg" alt="Аватар">
-          </a>
+        <div class="profile__info-name">
+          <span id="profile__info-name">Жак-Ив Кусто</span><a class="profile__edit-button" onclick="openPopUp();"
+                                                              href="#"><img
+                class="profile__edit-button-image" src="../mesto/images/profile-button.svg" alt="Аватар">
+        </a>
         </div>
-        <p class="profile__info_vocation">Исследователь океана</p>
+        <p class="profile__info-vocation" id="profile__info-vocation">Исследователь океана</p>
       </div>
     </div>
     <a class="profile__add-button" href="#">
-      <img class="profile__add-button_image" src="../mesto/images/plus.svg" alt="Кнопка редактирования профиля">
+      <img class="profile__add-button-image" src="../mesto/images/plus.svg" alt="Кнопка редактирования профиля">
     </a>
   </section>
 
@@ -86,7 +91,6 @@
   </footer>
 
 
-
 </main>
 
 <div class="popup" id="popup">
@@ -95,8 +99,8 @@
   </div>
 
   <div class="popup__container" id="popup__container">
-    <a class="popup__close-icon" href="#">
-      <img class="popup__close-icon_image" src="../mesto/images/close-icon.svg" alt="Иконка закрытия окна">
+    <a class="popup__close-icon" onclick="closePopUp();" href="#">
+      <img class="popup__close-icon-image" src="../mesto/images/close-icon.svg" alt="Иконка закрытия окна">
     </a>
     <div class="popup__rectangle">
       <div class="popup__title">Редактировать профиль</div>
@@ -104,11 +108,12 @@
       <input type="text" class="popup__field" id="popup__field-name" placeholder="Жак-Ив Кусто">
       <label for="popup__field-vocation"></label>
       <input type="text" class="popup__field" id="popup__field-vocation" placeholder="Исследователь океана">
-      <a class="popup__button">Сохранить</a>
+      <a class="popup__button" onclick="saveProfile();">Сохранить</a>
     </div>
   </div>
 
 </div>
 
+<script src="script/script.js"></script>
 </body>
 </html>
