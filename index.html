@@ -8,97 +8,97 @@
 </head>
 <body class="page">
 
-<header class="header">
-  <div class="logo"></div>
-</header>
+  <header class="header">
+    <div class="logo"></div>
+  </header>
 
-<main class="main">
+  <main class="main">
 
-  <section class="profile">
-    <div class="profile__avatar-and-info">
-      <div class="avatar"></div>
-      <div class="profile__info">
-        <h1 class="profile__info-name-and-button">
-          Жак-Ив Кусто
-        </h1>
-        <a class="profile__edit-button" onclick="openPopUp();" href="#"></a>
-        <div class="profile__info-vocation" id="profile__info-vocation">Исследователь океана</div>
+    <section class="profile">
+      <div class="profile__avatar-and-info">
+        <div class="avatar"></div>
+        <div class="profile__info">
+          <h1 class="profile__info-name-and-button">
+            Жак-Ив Кусто
+          </h1>
+          <a class="profile__edit-button" href="#"></a>
+          <div class="profile__info-vocation" id="profile__info-vocation">Исследователь океана</div>
+        </div>
       </div>
-    </div>
-    <a class="profile__add-button" href="#"></a>
-  </section>
+      <a class="profile__add-button" href="#"></a>
+    </section>
 
-  <section class="elements">
-    <div class="element">
-      <img class="element__image" src="images/IMG_8500.jpg" alt="Изображение">
-      <div class="element__place-and-like">
-        <div class="element__place">Крокодил</div>
-        <a class="element__like" href="#"></a>
+    <section class="elements">
+      <div class="element">
+        <img class="element__image" src="images/IMG_8500.jpg" alt="Изображение">
+        <div class="element__place-and-like">
+          <div class="element__place">Крокодил</div>
+          <a class="element__like" href="#"></a>
+        </div>
       </div>
-    </div>
 
-    <div class="element">
-      <img class="element__image" src="images/2023-02-09%2022.37.01.jpg" alt="Изображение">
-      <div class="element__place-and-like">
-        <div class="element__place">Монстера</div>
-        <a class="element__like" href="#"></a>
+      <div class="element">
+        <img class="element__image" src="images/2023-02-09%2022.37.01.jpg" alt="Изображение">
+        <div class="element__place-and-like">
+          <div class="element__place">Монстера</div>
+          <a class="element__like" href="#"></a>
+        </div>
       </div>
-    </div>
 
-    <div class="element">
-      <img class="element__image" src="images/IMG_E8687_2.jpg" alt="Изображение">
-      <div class="element__place-and-like">
-        <div class="element__place">Призрак</div>
-        <a class="element__like" href="#"></a>
+      <div class="element">
+        <img class="element__image" src="images/IMG_E8687_2.jpg" alt="Изображение">
+        <div class="element__place-and-like">
+          <div class="element__place">Призрак</div>
+          <a class="element__like" href="#"></a>
+        </div>
       </div>
-    </div>
 
-    <div class="element">
-      <img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg" alt="Изображение">
-      <div class="element__place-and-like">
-        <div class="element__place">Гора Эльбрус</div>
-        <a class="element__like" href="#"></a>
+      <div class="element">
+        <img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg" alt="Изображение">
+        <div class="element__place-and-like">
+          <div class="element__place">Гора Эльбрус</div>
+          <a class="element__like" href="#"></a>
+        </div>
       </div>
-    </div>
 
-    <div class="element">
-      <img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg" alt="Изображение">
-      <div class="element__place-and-like">
-        <div class="element__place">Домбай</div>
-        <a class="element__like" href="#"></a>
+      <div class="element">
+        <img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg" alt="Изображение">
+        <div class="element__place-and-like">
+          <div class="element__place">Домбай</div>
+          <a class="element__like" href="#"></a>
+        </div>
       </div>
-    </div>
 
-    <div class="element">
-      <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Изображение">
-      <div class="element__place-and-like">
-        <div class="element__place">Карачаевск Карачаевск</div>
-        <a class="element__like" href="#"></a>
+      <div class="element">
+        <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Изображение">
+        <div class="element__place-and-like">
+          <div class="element__place">Карачаевск Карачаевск</div>
+          <a class="element__like" href="#"></a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="footer">
-    <div class="footer__copyright">© 2020 Mesto Russia</div>
-  </footer>
+    <footer class="footer">
+      <div class="footer__copyright">© 2020 Mesto Russia</div>
+    </footer>
 
-</main>
+  </main>
 
-<div class="popup" id="popup">
-  <div class="popup__overlay"></div>
-  <a class="popup__close-icon" onclick="closePopUp();" href="#"></a>
+  <div class="popup" id="popup">
+    <div class="popup__overlay"></div>
+    <a class="popup__close-icon" href="#"></a>
 
-  <form class="popup__form" id="popup__form">
-    <div class="popup__form-title">Редактировать профиль</div>
-    <label for="popup__form-field-name"></label>
-    <input type="text" class="popup__form-field" id="popup__form-field-name" placeholder="Жак-Ив Кусто">
-    <label for="popup__form-field-vocation"></label>
-    <input type="text" class="popup__form-field" id="popup__form-field-vocation" placeholder="Исследователь океана">
-    <button class="popup__form-button-submit" type="submit">Сохранить</button>
-  </form>
+    <form class="popup__form" id="popup__form">
+      <div class="popup__form-title">Редактировать профиль</div>
+      <label for="popup__form-field-name"></label>
+      <input type="text" class="popup__form-field" id="popup__form-field-name" placeholder="Жак-Ив Кусто">
+      <label for="popup__form-field-vocation"></label>
+      <input type="text" class="popup__form-field" id="popup__form-field-vocation" placeholder="Исследователь океана">
+      <button class="popup__form-button-submit" type="submit">Сохранить</button>
+    </form>
 
-</div>
+  </div>
 
-<script src="script/script.js"></script>
+  <script src="script/script.js"></script>
 </body>
 </html>
