@@ -14,21 +14,17 @@
 
 <main class="main">
 
-
-  //Добавить стиль в спан с именем и перенести туда стили из дива и контейнер переименовать
-  //потому что в спан нужно воткнуть стили, чтобы текст не расползался
-
   <section class="profile">
     <div class="profile__avatar-and-info">
       <div class="avatar"></div>
       <div class="profile__info">
-        <div class="profile__info-name">
-          <span id="profile__info-name">Жак-Ив Кусто</span><a class="profile__edit-button" onclick="openPopUp();"
-                                                              href="#"><img
+        <div class="profile__info-name-and-button" id="profile__info-name">
+          Жак-Ив Кусто
+        </div>
+        <a class="profile__edit-button" onclick="openPopUp();" href="#"><img
                 class="profile__edit-button-image" src="../mesto/images/profile-button.svg" alt="Аватар">
         </a>
-        </div>
-        <p class="profile__info-vocation" id="profile__info-vocation">Исследователь океана</p>
+        <div class="profile__info-vocation" id="profile__info-vocation">Исследователь океана</div>
       </div>
     </div>
     <a class="profile__add-button" href="#">
@@ -90,26 +86,22 @@
     <div class="footer__copyright">© 2020 Mesto Russia</div>
   </footer>
 
-
 </main>
 
 <div class="popup" id="popup">
-  <div class="popup__overlay">
-
-  </div>
-
-  <div class="popup__container" id="popup__container">
+  <div class="popup__overlay"></div>
+  <div class="popup__container">
     <a class="popup__close-icon" onclick="closePopUp();" href="#">
       <img class="popup__close-icon-image" src="../mesto/images/close-icon.svg" alt="Иконка закрытия окна">
     </a>
-    <div class="popup__rectangle">
-      <div class="popup__title">Редактировать профиль</div>
-      <label for="popup__field-name"></label>
-      <input type="text" class="popup__field" id="popup__field-name" placeholder="Жак-Ив Кусто">
-      <label for="popup__field-vocation"></label>
-      <input type="text" class="popup__field" id="popup__field-vocation" placeholder="Исследователь океана">
-      <a class="popup__button" onclick="saveProfile();">Сохранить</a>
-    </div>
+    <form class="popup__form" id="popup__form">
+      <div class="popup__form-title">Редактировать профиль</div>
+      <label for="popup__form-field-name"></label>
+      <input type="text" class="popup__form-field" id="popup__form-field-name" placeholder="Жак-Ив Кусто">
+      <label for="popup__form-field-vocation"></label>
+      <input type="text" class="popup__form-field" id="popup__form-field-vocation" placeholder="Исследователь океана">
+      <button class="popup__form-button-submit" type="submit">Сохранить</button>
+    </form>
   </div>
 
 </div>

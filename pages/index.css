@@ -12,7 +12,7 @@
 @import "../blocks/profile/profile.css";
 @import "../blocks/avatar/avatar.css";
 @import "../blocks/profile/__info/profile__info.css";
-@import "../blocks/profile/__info-name/profile__info-name.css";
+@import "../blocks/profile/__info-name-and-button/profile__info-name-and-button.css";
 @import "../blocks/profile/__info-vocation/profile__info-vocation.css";
 @import "../blocks/profile/__edit-button/profile__edit-button.css";
 @import "../blocks/profile/__edit-button-image/profile__edit-button-image.css";
@@ -35,7 +35,7 @@
 @import "../blocks/popup/__container/popup__container.css";
 @import "../blocks/popup/__close-icon/popup__close-icon.css";
 @import "../blocks/popup/__close-icon-image/popup__close-icon-image.css";
-@import "../blocks/popup/__title/popup__title.css";
-@import "../blocks/popup/__rectangle/popup__rectangle.css";
-@import "../blocks/popup/__field/popup__field.css";
-@import "../blocks/popup/__button/popup__button.css";
+@import "../blocks/popup/__form-title/popup__form-title.css";
+@import "../blocks/popup/__form/popup__form.css";
+@import "../blocks/popup/__form-field/popup__form-field.css";
+@import "../blocks/popup/__form-button-submit/popup__form-button-submit.css";
