@@ -1,13 +1,21 @@
 .popup__form {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  z-index: 2;
+  top: calc((100vh - 370px) / 2);
+  left: calc((100vw - 430px) / 2);
   width: 430px;
-  height: 330px;
   background-color: #FFFFFF;
   border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 @media screen and (max-width: 767px) {
   .popup__form {
     width: 282px;
-    height: 322px;
+    top: calc((100vh - 358px) / 2);
+    left: calc((100vw - 282px) / 2);
   }
 }

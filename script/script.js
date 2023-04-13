@@ -6,7 +6,7 @@ let formElement = document.querySelector('#popup__form');
 let popupFieldName = document.querySelector('#popup__form-field-name');
 let popupFieldVocation = document.querySelector('#popup__form-field-vocation');
 
-let profileInfoName = document.querySelector('#profile__info-name');
+let profileInfoName = document.querySelector('.profile__info-name-and-button');
 let profileInfoVocation = document.querySelector('#profile__info-vocation');
 
 

@@ -22,7 +22,6 @@
 
 @media screen and (max-width: 767px) {
   .profile__info-name-and-button {
-    transform: translate(14px, 0);
     max-width: 220px;
     font-size: 27px;
     line-height: normal;

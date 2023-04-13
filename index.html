@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pages/index.css">
-  <title>Mesto</title>
+  <title>Место</title>
 </head>
 <body class="page">
 
@@ -14,23 +14,18 @@
 
 <main class="main">
 
-
   <section class="profile">
     <div class="profile__avatar-and-info">
       <div class="avatar"></div>
       <div class="profile__info">
-        <div class="profile__info-name-and-button" id="profile__info-name">
+        <h1 class="profile__info-name-and-button">
           Жак-Ив Кусто
-        </div>
-        <a class="profile__edit-button" onclick="openPopUp();" href="#"><img
-                class="profile__edit-button-image" src="../mesto/images/profile-button.svg" alt="Аватар">
-        </a>
+        </h1>
+        <a class="profile__edit-button" onclick="openPopUp();" href="#"></a>
         <div class="profile__info-vocation" id="profile__info-vocation">Исследователь океана</div>
       </div>
     </div>
-    <a class="profile__add-button" href="#">
-      <img class="profile__add-button-image" src="../mesto/images/plus.svg" alt="Кнопка редактирования профиля">
-    </a>
+    <a class="profile__add-button" href="#"></a>
   </section>
 
   <section class="elements">
@@ -91,17 +86,16 @@
 
 <div class="popup" id="popup">
   <div class="popup__overlay"></div>
-  <div class="popup__container">
-    <a class="popup__close-icon" onclick="closePopUp();" href="#"></a>
-    <form class="popup__form" id="popup__form">
-      <div class="popup__form-title">Редактировать профиль</div>
-      <label for="popup__form-field-name"></label>
-      <input type="text" class="popup__form-field" id="popup__form-field-name" placeholder="Жак-Ив Кусто">
-      <label for="popup__form-field-vocation"></label>
-      <input type="text" class="popup__form-field" id="popup__form-field-vocation" placeholder="Исследователь океана">
-      <button class="popup__form-button-submit" type="submit">Сохранить</button>
-    </form>
-  </div>
+  <a class="popup__close-icon" onclick="closePopUp();" href="#"></a>
+
+  <form class="popup__form" id="popup__form">
+    <div class="popup__form-title">Редактировать профиль</div>
+    <label for="popup__form-field-name"></label>
+    <input type="text" class="popup__form-field" id="popup__form-field-name" placeholder="Жак-Ив Кусто">
+    <label for="popup__form-field-vocation"></label>
+    <input type="text" class="popup__form-field" id="popup__form-field-vocation" placeholder="Исследователь океана">
+    <button class="popup__form-button-submit" type="submit">Сохранить</button>
+  </form>
 
 </div>
 

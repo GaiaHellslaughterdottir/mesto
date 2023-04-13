@@ -1,6 +1,5 @@
 .profile {
   max-width: 880px;
-  height: 120px;
   margin: 40px auto 0 auto;
   display: flex;
   flex-direction: row;
@@ -11,8 +10,6 @@
 @media screen and (max-width: 1023px) {
   .profile {
     max-width: 581px;
-    min-height: 286px;
-    height: auto;
     margin: 42px auto 0 auto;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -23,12 +20,6 @@
 @media screen and (max-width: 767px) {
   .profile {
     max-width: 282px;
-    min-height: 286px;
-    height: auto;
-    margin: 42px auto 0 auto;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
   }
 }
 

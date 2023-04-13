@@ -1,12 +1,18 @@
 .profile__add-button {
   text-decoration: none;
+  background-image: url("../../../../mesto/images/plus.svg");
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 146px;
+  height: 46px;
   border: 2px solid white;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   margin-left: auto;
+  border-radius: 2px;
 }
 
 .profile__add-button:hover {
