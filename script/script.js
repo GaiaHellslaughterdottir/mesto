@@ -1,6 +1,6 @@
-let popUp = document.querySelector('#popup');
+let popUp = document.querySelector('.popup');
 
-let formElement = document.querySelector('#popup__form');
+let formElement = document.querySelector('.popup__form');
 
 let profileEditButton = document.querySelector('.profile__edit-button');
 let popupCloseIcon = document.querySelector('.popup__close-icon');
@@ -10,7 +10,7 @@ let popupFieldName = document.querySelector('#popup__form-field-name');
 let popupFieldVocation = document.querySelector('#popup__form-field-vocation');
 
 let profileInfoName = document.querySelector('.profile__info-name-and-button');
-let profileInfoVocation = document.querySelector('#profile__info-vocation');
+let profileInfoVocation = document.querySelector('.profile__info-vocation');
 
 
 function openPopUp() {

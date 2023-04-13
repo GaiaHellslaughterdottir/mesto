@@ -6,6 +6,7 @@
   background-position: center;
   width: 146px;
   height: 46px;
+  background-color: rgba(0, 0, 0, 0);
   border: 2px solid white;
   display: flex;
   flex-direction: row;
@@ -13,6 +14,7 @@
   justify-content: center;
   margin-left: auto;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {

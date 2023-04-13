@@ -8,6 +8,9 @@
   position: absolute;
   top: calc((100vh - 370px) / 2 - 40px);
   left: calc((100vw - 430px) / 2 + 438px);
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
 }
 
 .popup__close-icon:hover {

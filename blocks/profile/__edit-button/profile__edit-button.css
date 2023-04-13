@@ -3,11 +3,14 @@
   height: 24px;
   background-image: url("../../../../mesto/images/profile-button.svg");
   background-repeat: no-repeat;
-  display: inline-block;
-  margin-left: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  display: inline-flex;
+  left: 10px;
   text-decoration: none;
   position: relative;
-  bottom: 10px;
+  bottom: 8px;
+  border: none;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {
