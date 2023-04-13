@@ -1,9 +1,7 @@
 .popup__container {
   position: absolute;
-
   width: 470px;
   height: 370px;
-  /*margin: calc(50vh - 185px) auto;*/
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

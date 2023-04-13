@@ -11,10 +11,3 @@
     justify-items: center;
   }
 }
-
-@media screen and (max-width: 767px) {
-  .profile__avatar-and-info {
-    flex-direction: column;
-    justify-items: center;
-  }
-}
