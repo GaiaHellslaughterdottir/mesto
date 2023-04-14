@@ -12,7 +12,7 @@
 @import "../blocks/profile/profile.css";
 @import "../blocks/avatar/avatar.css";
 @import "../blocks/profile/__info/profile__info.css";
-@import "../blocks/profile/__info-name-and-button/profile__info-name-and-button.css";
+@import "../blocks/profile/__info-name/profile__info-name.css";
 @import "../blocks/profile/__info-vocation/profile__info-vocation.css";
 @import "../blocks/profile/__edit-button/profile__edit-button.css";
 @import "../blocks/profile/__avatar-and-info/profile__avatar-and-info.css";
