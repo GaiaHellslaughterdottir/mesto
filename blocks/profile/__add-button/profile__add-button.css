@@ -1,6 +1,6 @@
 .profile__add-button {
   text-decoration: none;
-  background-image: url("../../../../mesto/images/plus.svg");
+  background-image: url("../../../images/plus.svg");
   background-size: 16px;
   background-repeat: no-repeat;
   background-position: center;

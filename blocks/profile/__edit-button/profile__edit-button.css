@@ -1,7 +1,7 @@
 .profile__edit-button {
   width: 24px;
   height: 24px;
-  background-image: url("../../../../mesto/images/profile-button.svg");
+  background-image: url("../../../images/profile-button.svg");
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0);
   display: inline-flex;

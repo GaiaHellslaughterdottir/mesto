@@ -83,13 +83,16 @@
   </main>
 
   <div class="popup">
-    <button class="popup__close-icon" type="button"></button>
-    <form class="popup__form" name="form">
-      <h3 class="popup__form-title">Редактировать профиль</h3>
-      <input type="text" name="name" class="popup__form-field" id="popup__form-field-name" placeholder="Жак-Ив Кусто">
-      <input type="text" name="vocation" class="popup__form-field" id="popup__form-field-vocation" placeholder="Исследователь океана">
-      <button class="popup__form-button-submit" type="submit">Сохранить</button>
-    </form>
+    <div class="popup__container">
+      <button class="popup__close-icon" type="button"></button>
+      <form class="form" name="form">
+        <h3 class="form__title">Редактировать профиль</h3>
+        <input type="text" name="name" class="form__field" id="form__field-name" placeholder="Жак-Ив Кусто">
+        <input type="text" name="vocation" class="form__field" id="form__field-vocation"
+               placeholder="Исследователь океана">
+        <button class="form__button-submit" type="submit">Сохранить</button>
+      </form>
+    </div>
   </div>
 
   <script src="script/script.js"></script>
