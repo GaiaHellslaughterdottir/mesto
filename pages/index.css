@@ -16,7 +16,7 @@
 @import "../blocks/profile/__info-vocation/profile__info-vocation.css";
 @import "../blocks/profile/__edit-button/profile__edit-button.css";
 @import "../blocks/profile/__avatar-and-info/profile__avatar-and-info.css";
-@import "../blocks/profile/__add-button/profile__add-button.css";
+@import "../blocks/profile/__add-place-button/profile__add-place-button.css";
 
 @import "../blocks/elements/elements.css";
 @import "../blocks/element/element.css";
@@ -25,15 +25,21 @@
 @import "../blocks/element/__like/element__like.css";
 @import "../blocks/element/__like/_active/element__like_active.css";
 @import "../blocks/element/__place/element__place.css";
+@import "../blocks/element/__basket/element__basket.css";
 
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__copyright/footer__copyright.css";
 
 @import "../blocks/popup/popup.css";
 @import "../blocks/popup/__container/popup__container.css";
-@import "../blocks/popup/_opened/popup_opened.css";
+@import "../blocks/popup/_no-background/popup__container_no-background.css";
 @import "../blocks/popup/__close-icon/popup__close-icon.css";
+@import "../blocks/popup/_visible/popup_visible.css";
+@import "../blocks/popup/_invisible/popup_invisible.css";
 @import "../blocks/form/__title/form__title.css";
 @import "../blocks/form/form.css";
 @import "../blocks/form/__field/form__field.css";
 @import "../blocks/form/__button-submit/form__button-submit.css";
+
+@import "../blocks/place-info/__title/place-info__title.css";
+@import "../blocks/place-info/__image/place-info__image.css";

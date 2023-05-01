@@ -23,57 +23,22 @@
           <p class="profile__info-vocation">Исследователь океана</p>
         </div>
       </div>
-      <button class="profile__add-button" type="button"></button>
+      <button class="profile__add-place-button" type="button"></button>
     </section>
 
     <section class="elements">
-      <article class="element">
-        <img class="element__image" src="images/IMG_8500.jpg" alt="Изображение филодендрона Золотой Крокодил">
-        <div class="element__place-and-like">
-          <h2 class="element__place">Крокодил</h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
 
-      <article class="element">
-        <img class="element__image" src="images/2023-02-09%2022.37.01.jpg" alt="Изображение монстеры минт">
-        <div class="element__place-and-like">
-          <h2 class="element__place">Монстера</h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
+      <template id="card-template">
+        <article class="element">
+          <button class="element__basket" type="button"></button>
+          <img class="element__image" src="#" alt="Изображение места">
+          <div class="element__place-and-like">
+            <h2 class="element__place"></h2>
+            <button class="element__like" type="button"></button>
+          </div>
+        </article>
+      </template>
 
-      <article class="element">
-        <img class="element__image" src="images/IMG_E8687_2.jpg" alt="Изображение сингониума Серый призрак">
-        <div class="element__place-and-like">
-          <h2 class="element__place">Призрак</h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg" alt="Изображение Эльбруса">
-        <div class="element__place-and-like">
-          <h2 class="element__place">Гора Эльбрус</h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg" alt="Изображение Домбая">
-        <div class="element__place-and-like">
-          <h2 class="element__place">Домбай</h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Изображение Карачаевска">
-        <div class="element__place-and-like">
-          <h2 class="element__place">Карачаевск Карачаевск</h2>
-          <button class="element__like" type="button"></button>
-        </div>
-      </article>
     </section>
 
     <footer class="footer">
@@ -82,7 +47,7 @@
 
   </main>
 
-  <div class="popup">
+  <div class="popup popup_invisible" id="profile-popup">
     <div class="popup__container">
       <button class="popup__close-icon" type="button"></button>
       <form class="form" name="form">
@@ -92,6 +57,27 @@
                placeholder="Исследователь океана">
         <button class="form__button-submit" type="submit">Сохранить</button>
       </form>
+    </div>
+  </div>
+
+  <div class="popup popup_invisible" id="place-popup">
+    <div class="popup__container">
+      <button class="popup__close-icon" type="button"></button>
+      <form class="form" name="form">
+        <h3 class="form__title">Новое место</h3>
+        <input type="text" name="name" class="form__field" id="form__field-place-name" placeholder="Название">
+        <input type="text" name="image" class="form__field" id="form__field-place-image"
+               placeholder="Ссылка на картинку">
+        <button class="form__button-submit" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_invisible" id="place-image-popup">
+    <div class="popup__container popup__container_no-background">
+      <button class="popup__close-icon" type="button"></button>
+      <img class="place-info__image" src="#" alt="Изображение места">
+      <p class="place-info__title"></p>
     </div>
   </div>
 
