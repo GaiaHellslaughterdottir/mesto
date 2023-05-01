@@ -41,5 +41,6 @@
 @import "../blocks/form/__field/form__field.css";
 @import "../blocks/form/__button-submit/form__button-submit.css";
 
+@import "../blocks/place-info/place-info.css";
 @import "../blocks/place-info/__title/place-info__title.css";
 @import "../blocks/place-info/__image/place-info__image.css";
