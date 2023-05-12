@@ -47,14 +47,16 @@
 
   </main>
 
-  <div class="popup" id="profile-popup">
+  <div class="popup popup_opened" id="profile-popup">
     <div class="popup__container">
       <button class="popup__close-icon" type="button"></button>
-      <form class="form" name="form">
+      <form class="form" name="form" novalidate>
         <h3 class="form__title">Редактировать профиль</h3>
-        <input type="text" name="name" class="form__field" id="form__field-name" placeholder="Жак-Ив Кусто">
+        <input minlength="3" maxlength="15" type="text" name="name" class="form__field" id="form__field-name" placeholder="Жак-Ив Кусто">
+        <span id="name-error" class="form__error"></span>
         <input type="text" name="vocation" class="form__field" id="form__field-vocation"
                placeholder="Исследователь океана">
+        <span id="vocation-error" class="form__error"></span>
         <button class="form__button-submit" type="submit">Сохранить</button>
       </form>
     </div>
@@ -63,11 +65,13 @@
   <div class="popup" id="place-popup">
     <div class="popup__container">
       <button class="popup__close-icon" type="button"></button>
-      <form class="form" name="form">
+      <form class="form" name="form" novalidate>
         <h3 class="form__title">Новое место</h3>
-        <input type="text" name="name" class="form__field" id="form__field-place-name" placeholder="Название">
+        <input type="text" name="place-name" class="form__field" id="form__field-place-name" placeholder="Название">
+        <span id="place-name-error" class="form__error"></span>
         <input type="text" name="image" class="form__field" id="form__field-place-image"
                placeholder="Ссылка на картинку">
+        <span id="image-error" class="form__error"></span>
         <button class="form__button-submit" type="submit">Сохранить</button>
       </form>
     </div>
@@ -85,5 +89,6 @@
 
   <script src="script/constants.js"></script>
   <script src="script/script.js"></script>
+  <script src="script/validate.js"></script>
 </body>
 </html>
