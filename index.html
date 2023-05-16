@@ -47,15 +47,16 @@
 
   </main>
 
-  <div class="popup popup_opened" id="profile-popup">
+  <div class="popup" id="profile-popup">
     <div class="popup__container">
       <button class="popup__close-icon" type="button"></button>
       <form class="form" name="form" novalidate>
         <h3 class="form__title">Редактировать профиль</h3>
-        <input minlength="3" maxlength="15" type="text" name="name" class="form__field" id="form__field-name" placeholder="Жак-Ив Кусто">
+        <input minlength="2" maxlength="40" type="text" name="name" class="form__field" id="form__field-name"
+               placeholder="Жак-Ив Кусто" required>
         <span id="name-error" class="form__error"></span>
-        <input type="text" name="vocation" class="form__field" id="form__field-vocation"
-               placeholder="Исследователь океана">
+        <input minlength="2" maxlength="200" type="text" name="vocation" class="form__field" id="form__field-vocation"
+               placeholder="Исследователь океана" required>
         <span id="vocation-error" class="form__error"></span>
         <button class="form__button-submit" type="submit">Сохранить</button>
       </form>
@@ -67,10 +68,11 @@
       <button class="popup__close-icon" type="button"></button>
       <form class="form" name="form" novalidate>
         <h3 class="form__title">Новое место</h3>
-        <input type="text" name="place-name" class="form__field" id="form__field-place-name" placeholder="Название">
+        <input minlength="2" maxlength="30" type="text" name="place-name" class="form__field"
+               id="form__field-place-name" placeholder="Название" required>
         <span id="place-name-error" class="form__error"></span>
-        <input type="text" name="image" class="form__field" id="form__field-place-image"
-               placeholder="Ссылка на картинку">
+        <input type="url" name="image" class="form__field" id="form__field-place-image"
+               placeholder="Ссылка на картинку" required>
         <span id="image-error" class="form__error"></span>
         <button class="form__button-submit" type="submit">Сохранить</button>
       </form>

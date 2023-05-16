@@ -82,9 +82,6 @@ function handleToggleLike(evt) {
   evt.target.classList.toggle('element__like_active');
 }
 
-//Шаблон карточки места
-const cardTemplate = document.querySelector('#card-template').content;
-
 /**
  * Функция создания новой карточки
  * @param name - наименование места
@@ -118,23 +115,52 @@ function handleRemoveCard(evt) {
 }
 
 /**
+ * Обработчик события клика мышкой на оверлей окна
+ * @param evt - событие
+ */
+function handleOverlayClick(evt) {
+  if (!evt.target.classList.contains('popup__container')) {
+    closePopup(evt.target);
+  }
+}
+
+/**
  * Инициализация сайта
  */
 function init() {
+  //Добавление слушателя на кнопки отправки форм
   profilePopupForm.addEventListener('submit', handleFormProfileSubmit);
   placePopupForm.addEventListener('submit', handleFormPlaceSubmit);
 
+  //Добавление слушателя на поля ввода
   profileEditButton.addEventListener('click', handleOpenProfilePopup);
   profileAddPlaceButton.addEventListener('click', handlerOpenPlaceEditPopup);
 
+  //Добавление слушателя на иконку закрытия окна
   popupCloseIconList.forEach(closeIcon => {
     closeIcon.addEventListener('click', handleClosePopup);
   });
 
+  //Добавление события закрытия окна клавишей esc
+  document.onkeydown = function (evt) {
+    if (evt.keyCode === 27) {
+      let openedPopup = document.querySelector('.popup_opened');
+      if (openedPopup) {
+        closePopup(openedPopup);
+      }
+    }
+  };
+
+  //Добавление слушателя на оверлей окон
+  popups.forEach(popup => {
+    popup.addEventListener('click', handleOverlayClick);
+  });
+
+  //Создание галереи предустановленным набором карточек
   initialCards.forEach(card => {
     const cardElement = createCard(card.name, card.link);
     addCard(cardElement);
-  })
+  });
 }
 
 init();

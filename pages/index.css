@@ -37,10 +37,11 @@
 @import "../blocks/popup/_opened/popup_opened.css";
 @import "../blocks/form/__title/form__title.css";
 @import "../blocks/form/form.css";
-@import "../blocks/form/__field/form__field.css";
+@import "../blocks/form/__field/form__field_invalid.css";
 @import "../blocks/form/__button-submit/form__button-submit.css";
+@import "../blocks/form/__button-submit/_disabled/form__button-submit_disabled.css";
 @import "../blocks/form/__error/form__error.css";
-
+@import "../blocks/form/__field/_invalid/form_field-invalid.css";
 
 @import "../blocks/place-info/place-info.css";
 @import "../blocks/place-info/__title/place-info__title.css";

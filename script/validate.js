@@ -1,64 +1,110 @@
-// Находим все формы и перебираем их
-// Вешаем обработчик события submit на каждую форму в переборе
-// Внутри каждой формы ищем инпуты
-// Перебираем список инпутов конкретной формы и вешаем на каждый инпут обработчик события input
-// При наступлении события ввода в инпут проверяем его валидность
-// Если инпут не валиден, выводи сообщение об ошибке в элемент ошибки и добавляем класс невалидности
-// В противном случае удаляем класс и очищаем сообшение
+/**
+ * Показать текст ошибки под полем ввода
+ * @param inputElement - поле ввода
+ * @param errorElement - строка с сообщением об ошибке
+ * @param config - объект настроек
+ */
+function showError(inputElement, errorElement, config) {
+  inputElement.classList.add(config.inputErrorClass);
+  errorElement.textContent = inputElement.validationMessage;
+}
 
 /**
- *
- * @param inputElement
- * @param formElement
+ * Убрать текст ошибки под полем ввода
+ * @param inputElement - поле ввода
+ * @param errorElement - строка с сообщением об ошибке
+ * @param config - объект настроек
  */
-function checkInputValidity(inputElement, formElement) {
-  console.log(inputElement.validationMessage);
+function hideError(inputElement, errorElement, config) {
+  inputElement.classList.remove(config.inputErrorClass);
+  errorElement.textContent = inputElement.validationMessage;
+}
+
+/**
+ * Блокировка кнопки сабмит
+ * @param buttonElement - элемент кнопки
+ * @param config - объект настроек
+ */
+function disabledButton(buttonElement, config) {
+  buttonElement.disabled = 'disabled';
+  buttonElement.classList.add(config.inactiveButtonClass);
+}
+
+/**
+ * Разблокировка кнопки сабмит
+ * @param buttonElement - элемент кнопки
+ * @param config - объект настроек
+ */
+function enabledButton(buttonElement, config) {
+  buttonElement.disabled = false;
+  buttonElement.classList.remove(config.inactiveButtonClass);
+}
+
+/**
+ * Переключение активности кнопки сабмит
+ * @param buttonElement
+ * @param isActive
+ * @param config - объект настроек
+ */
+function toggleButtonState(buttonElement, isActive, config) {
+  if (!isActive) {
+    disabledButton(buttonElement, config);
+  } else {
+    enabledButton(buttonElement, config);
+  }
+}
+
+/**
+ * Проверка полей ввода на валидность
+ * @param inputElement - поле ввода
+ * @param formElement - форма
+ * @param config - объект настроек
+ */
+function checkInputValidity(inputElement, formElement, config) {
   const isInputValidity = inputElement.validity.valid;
   const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
-  console.log(errorElement);
+  if (!errorElement) {
+    return;
+  }
+  if (!isInputValidity) {
+    showError(inputElement, errorElement, config);
+  } else {
+    hideError(inputElement, errorElement, config);
+  }
 }
 
 /**
  * Обработчик событий для форм и для полей ввода
- * @param formElement -
+ * @param formElement - форма
+ * @param config - объект настроек
  */
-function setEventListener(formElement) {
-  const inputsList = formElement.querySelectorAll('.form__field');
-  const submitButtonElement = formElement.querySelector('form__button-submit');
+function setEventListener(formElement, config) {
+  const inputsList = formElement.querySelectorAll(config.inputSelector);
+  const submitButtonElement = formElement.querySelector(config.submitButtonSelector);
+
+  toggleButtonState(submitButtonElement, formElement.checkValidity(), config);
 
   formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
     console.log('Форма отправлена');
   });
-    [...inputsList].forEach((inputItem) => {
-      inputItem.addEventListener('input', () => {
-        checkInputValidity(inputItem, formElement);
-      })
+  [...inputsList].forEach((inputItem) => {
+    inputItem.addEventListener('input', () => {
+      toggleButtonState(submitButtonElement, formElement.checkValidity(), config);
+      checkInputValidity(inputItem, formElement, config);
     })
-}
-
-
-/**
- * Создание массива форм, перебор массива форм
- */
-function enableValidation() {
-  const forms = document.querySelectorAll('.form');
-  [...forms].forEach((formItem) => {
-    setEventListener(formItem);
   })
 }
 
-enableValidation();
+/**
+ * Создание массива форм, перебор массива форм
+ * @param config - объект настроек
+ */
+function enableValidation(config) {
+  const forms = document.querySelectorAll(config.formSelector);
+  [...forms].forEach((formItem) => {
+    setEventListener(formItem, config);
+  })
+}
 
-
-/*
-function enableValidation({
-                            formSelector: '',
-                            inputSelector: '',
-                            submitButtonSelector: '',
-                            inactiveButtonClass: '',
-                            inputErrorClass: '',
-                            errorClass: ''
-                          }) {
-
-}*/
+enableValidation(configFormSelector);

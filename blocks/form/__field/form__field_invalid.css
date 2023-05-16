@@ -10,10 +10,6 @@
   outline: none;
 }
 
-.form__field:invalid {
-  border-bottom: 1px solid red;
-}
-
 @media screen and (max-width: 767px) {
   .form__field {
     width: 238px;

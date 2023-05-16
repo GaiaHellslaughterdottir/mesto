@@ -6,6 +6,8 @@ const placePopup = document.querySelector('#place-popup');
 const placeImagePopup = document.querySelector('#place-image-popup');
 //Иконки закрытия всплывающих окон
 const popupCloseIconList = document.querySelectorAll('.popup__close-icon');
+//Окна popup
+const popups = document.querySelectorAll('.popup');
 
 //Поле формы для имени в профиле
 const formFieldName = document.querySelector('#form__field-name');
@@ -20,6 +22,8 @@ const profileEditButton = document.querySelector('.profile__edit-button');
 //Форма редактирования профиля
 const profilePopupForm = profilePopup.querySelector('.form');
 
+//Шаблон карточки места
+const cardTemplate = document.querySelector('#card-template').content;
 //Кнопка создания новой карточки места
 const profileAddPlaceButton = document.querySelector('.profile__add-place-button');
 //Секция с карточками
@@ -62,3 +66,11 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+const configFormSelector = {
+  formSelector: '.form',
+  inputSelector: '.form__field',
+  submitButtonSelector: '.form__button-submit',
+  inactiveButtonClass: 'form__button-submit_disabled',
+  inputErrorClass: 'form__field_invalid',
+};
