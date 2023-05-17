@@ -8,6 +8,8 @@ const placeImagePopup = document.querySelector('#place-image-popup');
 const popupCloseIconList = document.querySelectorAll('.popup__close-icon');
 //Окна popup
 const popups = document.querySelectorAll('.popup');
+//
+const keyEscCode = 27;
 
 //Поле формы для имени в профиле
 const formFieldName = document.querySelector('#form__field-name');

@@ -26,7 +26,7 @@ function hideError(inputElement, errorElement, config) {
  * @param config - объект настроек
  */
 function disabledButton(buttonElement, config) {
-  buttonElement.disabled = 'disabled';
+  buttonElement.disabled = true;
   buttonElement.classList.add(config.inactiveButtonClass);
 }
 
@@ -46,8 +46,8 @@ function enabledButton(buttonElement, config) {
  * @param isActive
  * @param config - объект настроек
  */
-function toggleButtonState(buttonElement, isActive, config) {
-  if (!isActive) {
+function toggleButtonState(buttonElement, validity, config) {
+  if (validity === false) {
     disabledButton(buttonElement, config);
   } else {
     enabledButton(buttonElement, config);
@@ -86,7 +86,6 @@ function setEventListener(formElement, config) {
 
   formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    console.log('Форма отправлена');
   });
   [...inputsList].forEach((inputItem) => {
     inputItem.addEventListener('input', () => {

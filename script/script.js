@@ -4,6 +4,14 @@
  */
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.onkeydown = function (evt) {
+    if (evt.keyCode === keyEscCode) {
+      const openedPopup = document.querySelector('.popup_opened');
+      if (openedPopup) {
+        closePopup(openedPopup);
+      }
+    }
+  };
 }
 
 /**
@@ -12,6 +20,8 @@ function openPopup(popup) {
  */
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.onkeydown = null;
+  console.log('ksjdghdf');
 }
 
 /**
@@ -29,6 +39,9 @@ function handleOpenProfilePopup() {
 function handlerOpenPlaceEditPopup() {
   placeFieldName.closest('.form').reset();
   openPopup(placePopup);
+  const submitButtonElement = placePopup.querySelector(configFormSelector.submitButtonSelector);
+
+  toggleButtonState(submitButtonElement, false, configFormSelector);
 }
 
 /**
@@ -140,16 +153,6 @@ function init() {
   popupCloseIconList.forEach(closeIcon => {
     closeIcon.addEventListener('click', handleClosePopup);
   });
-
-  //Добавление события закрытия окна клавишей esc
-  document.onkeydown = function (evt) {
-    if (evt.keyCode === 27) {
-      let openedPopup = document.querySelector('.popup_opened');
-      if (openedPopup) {
-        closePopup(openedPopup);
-      }
-    }
-  };
 
   //Добавление слушателя на оверлей окон
   popups.forEach(popup => {
