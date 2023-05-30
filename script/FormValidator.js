@@ -1,0 +1,116 @@
+export default class FormValidator {
+  /**
+   * Конструктор класса
+   * @param configFormSelector - массив с селекторами элементов формы
+   * @param formElement - элемент формы
+   */
+  constructor(configFormSelector, formElement) {
+    this._configFormSelector = configFormSelector;
+    this._formElement = formElement;
+    formElement.formValidator = this;
+  }
+
+  /**
+   * Функция включения валидации в форме
+   */
+  enableValidation() {
+    this._setEventListener();
+  }
+
+  /**
+   * Функция приведения формы в исходное состояние
+   */
+  resetForm() {
+    this._toggleButtonState(this._formElement.querySelector(this._configFormSelector.submitButtonSelector),
+      false, this._configFormSelector);
+  }
+
+  /**
+   * Обработчик событий для форм и для полей ввода
+   */
+  _setEventListener() {
+    const inputsList = this._formElement.querySelectorAll(this._configFormSelector.inputSelector);
+    const submitButtonElement = this._formElement.querySelector(this._configFormSelector.submitButtonSelector);
+
+    this._toggleButtonState(submitButtonElement, this._formElement.checkValidity(), this._configFormSelector);
+
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    [...inputsList].forEach((inputItem) => {
+      inputItem.addEventListener('input', () => {
+        this._toggleButtonState(submitButtonElement, this._formElement.checkValidity(), this._configFormSelector);
+        this._checkInputValidity(inputItem, this._formElement, this._configFormSelector);
+      })
+    })
+  }
+
+  /**
+   * Показать текст ошибки под полем ввода
+   * @param inputElement - поле ввода
+   * @param errorElement - строка с сообщением об ошибке
+   */
+  _showError(inputElement, errorElement) {
+    inputElement.classList.add(this._configFormSelector.inputErrorClass);
+    errorElement.textContent = inputElement.validationMessage;
+  }
+
+  /**
+   * Убрать текст ошибки под полем ввода
+   * @param inputElement - поле ввода
+   * @param errorElement - строка с сообщением об ошибке
+   */
+  _hideError(inputElement, errorElement) {
+    inputElement.classList.remove(this._configFormSelector.inputErrorClass);
+    errorElement.textContent = inputElement.validationMessage;
+  }
+
+  /**
+   * Блокировка кнопки сабмит
+   * @param buttonElement - элемент кнопки
+   */
+  _disabledButton(buttonElement) {
+    buttonElement.disabled = true;
+    buttonElement.classList.add(this._configFormSelector.inactiveButtonClass);
+  }
+
+  /**
+   * Разблокировка кнопки сабмит
+   * @param buttonElement - элемент кнопки
+   */
+  _enabledButton(buttonElement) {
+    buttonElement.disabled = false;
+    buttonElement.classList.remove(this._configFormSelector.inactiveButtonClass);
+  }
+
+  /**
+   * Переключение активности кнопки сабмит
+   * @param buttonElement
+   * @param validity
+   */
+  _toggleButtonState(buttonElement, validity) {
+    if (validity === false) {
+      this._disabledButton(buttonElement, this._configFormSelector);
+    } else {
+      this._enabledButton(buttonElement, this._configFormSelector);
+    }
+  }
+
+  /**
+   * Проверка полей ввода на валидность
+   * @param inputElement - поле ввода
+   * @param formElement - форма
+   */
+  _checkInputValidity(inputElement, formElement) {
+    const isInputValidity = inputElement.validity.valid;
+    const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
+    if (!errorElement) {
+      return;
+    }
+    if (!isInputValidity) {
+      this._showError(inputElement, errorElement, this._configFormSelector);
+    } else {
+      this._hideError(inputElement, errorElement, this._configFormSelector);
+    }
+  }
+}
