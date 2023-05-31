@@ -8,6 +8,7 @@ export default class Card {
   constructor(data, templateSelector, openCardCallback) {
     this._name = data.name;
     this._link = data.link;
+    this._description = `Изображение ${data.name}`;
     this._templateSelector = templateSelector;
     this._openCardCallback = openCardCallback;
   }
@@ -33,6 +34,7 @@ export default class Card {
     this._cardElement = this._getTemplate();
     this._cardElement.querySelector('.element__place').textContent = this._name;
     this._cardElement.querySelector('.element__image').src = this._link;
+    this._cardElement.querySelector('.element__image').alt = this._description;
     this._setEventListeners();
     return this._cardElement;
   }
@@ -73,4 +75,3 @@ export default class Card {
     evt.target.classList.toggle('element__like_active');
   }
 }
-
