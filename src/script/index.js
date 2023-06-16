@@ -1,5 +1,8 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import * as data from "./constants.js";
+
+import '../pages/index.css';
 
 /**
  * Открытие всплывающего окна
@@ -8,7 +11,7 @@ import FormValidator from "./FormValidator.js";
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.onkeydown = function (evt) {
-    if (evt.keyCode === keyEscCode) {
+    if (evt.keyCode === data.keyEscCode) {
       const openedPopup = document.querySelector('.popup_opened');
       if (openedPopup) {
         closePopup(openedPopup);
@@ -30,18 +33,18 @@ function closePopup(popup) {
  * Обработчик события открытия окна редактирования профиля
  */
 function handleOpenProfilePopup() {
-  formFieldName.value = profileInfoName.textContent;
-  formFieldVocation.value = profileInfoVocation.textContent;
-  openPopup(profilePopup);
+  data.formFieldName.value = data.profileInfoName.textContent;
+  data.formFieldVocation.value = data.profileInfoVocation.textContent;
+  openPopup(data.profilePopup);
 }
 
 /**
  * Обработчик события открытия окна добавления места
  */
 function handlerOpenPlaceEditPopup() {
-  placeFieldName.closest('.form').reset();
-  openPopup(placePopup);
-  placePopupForm.formValidator.resetForm();
+  data.placeFieldName.closest('.form').reset();
+  openPopup(data.placePopup);
+  data.placePopupForm.formValidator.resetForm();
 }
 
 /**
@@ -59,9 +62,9 @@ function handleClosePopup(evt) {
  */
 function handleFormProfileSubmit(evt) {
   evt.preventDefault();
-  profileInfoName.textContent = formFieldName.value;
-  profileInfoVocation.textContent = formFieldVocation.value;
-  closePopup(profilePopup);
+  data.profileInfoName.textContent = data.formFieldName.value;
+  data.profileInfoVocation.textContent = data.formFieldVocation.value;
+  closePopup(data.profilePopup);
 }
 
 /**
@@ -80,11 +83,11 @@ function createCard(name, link) {
  */
 function handleFormPlaceSubmit(evt) {
   evt.preventDefault();
-  const name = placeFieldName.value;
-  const link = placeFieldImage.value;
+  const name = data.placeFieldName.value;
+  const link = data.placeFieldImage.value;
   const card = createCard(name, link);
-  cardsContainer.prepend(card.createCardElement());
-  closePopup(placePopup);
+  data.cardsContainer.prepend(card.createCardElement());
+  closePopup(data.placePopup);
 }
 
 /**
@@ -102,13 +105,13 @@ function handleOverlayClick(evt) {
  * @param cardElement
  */
 function openCardCallback(cardElement) {
-  elementPlaceInfoImage.src =
+  data.elementPlaceInfoImage.src =
     cardElement.querySelector('.element__image').src;
-  elementPlaceInfoImage.alt =
+  data.elementPlaceInfoImage.alt =
     cardElement.querySelector('.element__image').alt;
-  elementPlaceInfoTitle.textContent =
+  data.elementPlaceInfoTitle.textContent =
     cardElement.querySelector('.element__place').textContent;
-  openPopup(placeImagePopup);
+  openPopup(data.placeImagePopup);
 }
 
 /**
@@ -116,34 +119,35 @@ function openCardCallback(cardElement) {
  */
 function init() {
   //Добавление слушателя на кнопки отправки форм
-  profilePopupForm.addEventListener('submit', handleFormProfileSubmit);
-  placePopupForm.addEventListener('submit', handleFormPlaceSubmit);
+  data.profilePopupForm.addEventListener('submit', handleFormProfileSubmit);
+  data.placePopupForm.addEventListener('submit', handleFormPlaceSubmit);
 
   //Добавление слушателя на поля ввода
-  profileEditButton.addEventListener('click', handleOpenProfilePopup);
-  profileAddPlaceButton.addEventListener('click', handlerOpenPlaceEditPopup);
+  data.profileEditButton.addEventListener('click', handleOpenProfilePopup);
+  data.profileAddPlaceButton.addEventListener('click', handlerOpenPlaceEditPopup);
 
   //Добавление слушателя на иконку закрытия окна
-  popupCloseIconList.forEach(closeIcon => {
+  data.popupCloseIconList.forEach(closeIcon => {
     closeIcon.addEventListener('click', handleClosePopup);
   });
 
   //Добавление слушателя на оверлей окон
-  popups.forEach(popup => {
+  data.popups.forEach(popup => {
     popup.addEventListener('click', handleOverlayClick);
   });
 
   //Создание галереи предустановленным набором карточек
-  initialCards.forEach(card => {
+  data.initialCards.forEach(card => {
     const cardObject = createCard(card.name, card.link);
     const cardElement = cardObject.createCardElement();
-    cardsContainer.prepend(cardElement);
+    data.cardsContainer.prepend(cardElement);
   });
 
   //Включение валидации всех форм
-  [...document.querySelectorAll(configFormSelector.formSelector)].forEach((formItem) => {
-    new FormValidator(configFormSelector, formItem).enableValidation();
+  [...document.querySelectorAll(data.configFormSelector.formSelector)].forEach((formItem) => {
+    new FormValidator(data.configFormSelector, formItem).enableValidation();
   })
 }
 
 init();
+
