@@ -1,8 +1,15 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
+
 import * as data from "./constants.js";
 
 import '../pages/index.css';
+
+let popupWithImage;
+let userInfo;
 
 /**
  * Открытие всплывающего окна
@@ -33,10 +40,25 @@ function closePopup(popup) {
  * Обработчик события открытия окна редактирования профиля
  */
 function handleOpenProfilePopup() {
-  data.formFieldName.value = data.profileInfoName.textContent;
-  data.formFieldVocation.value = data.profileInfoVocation.textContent;
+  const userInfoValues = userInfo.getUserInfo();
+  data.formFieldName.value = userInfoValues.name;
+  data.formFieldVocation.value = userInfoValues.info;
   openPopup(data.profilePopup);
 }
+
+/**
+ * Обработчик события сохрания информации профиля
+ * @param evt - событие
+ */
+function handleFormProfileSubmit(evt) {
+  evt.preventDefault();
+  const userInfoValues = {};
+  userInfoValues.name = data.formFieldName.value;
+  userInfoValues.info = data.formFieldVocation.value;
+  userInfo.setUserInfo(userInfoValues);
+  closePopup(data.profilePopup);
+}
+
 
 /**
  * Обработчик события открытия окна добавления места
@@ -54,17 +76,6 @@ function handlerOpenPlaceEditPopup() {
 function handleClosePopup(evt) {
   const popup = evt.target.closest('.popup');
   closePopup(popup);
-}
-
-/**
- * Обработчик события сохрания информации профиля
- * @param evt - событие
- */
-function handleFormProfileSubmit(evt) {
-  evt.preventDefault();
-  data.profileInfoName.textContent = data.formFieldName.value;
-  data.profileInfoVocation.textContent = data.formFieldVocation.value;
-  closePopup(data.profilePopup);
 }
 
 /**
@@ -105,19 +116,21 @@ function handleOverlayClick(evt) {
  * @param cardElement
  */
 function openCardCallback(cardElement) {
-  data.elementPlaceInfoImage.src =
-    cardElement.querySelector('.element__image').src;
-  data.elementPlaceInfoImage.alt =
-    cardElement.querySelector('.element__image').alt;
-  data.elementPlaceInfoTitle.textContent =
-    cardElement.querySelector('.element__place').textContent;
-  openPopup(data.placeImagePopup);
+  const src = cardElement.querySelector('.element__image').src;
+  const alt = cardElement.querySelector('.element__image').alt;
+  const title = cardElement.querySelector('.element__place').textContent;
+  popupWithImage.open({src, alt, title});
 }
 
 /**
  * Инициализация сайта
  */
 function init() {
+  popupWithImage = new PopupWithImage('#place-image-popup');
+  popupWithImage.setEventListeners();
+
+  userInfo = new UserInfo('.profile__info-name', '.profile__info-vocation');
+
   //Добавление слушателя на кнопки отправки форм
   data.profilePopupForm.addEventListener('submit', handleFormProfileSubmit);
   data.placePopupForm.addEventListener('submit', handleFormPlaceSubmit);
@@ -125,16 +138,6 @@ function init() {
   //Добавление слушателя на поля ввода
   data.profileEditButton.addEventListener('click', handleOpenProfilePopup);
   data.profileAddPlaceButton.addEventListener('click', handlerOpenPlaceEditPopup);
-
-  //Добавление слушателя на иконку закрытия окна
-  data.popupCloseIconList.forEach(closeIcon => {
-    closeIcon.addEventListener('click', handleClosePopup);
-  });
-
-  //Добавление слушателя на оверлей окон
-  data.popups.forEach(popup => {
-    popup.addEventListener('click', handleOverlayClick);
-  });
 
   //Создание галереи предустановленным набором карточек
   data.initialCards.forEach(card => {
