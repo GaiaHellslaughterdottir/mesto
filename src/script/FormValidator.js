@@ -34,14 +34,14 @@ export default class FormValidator {
 
     this._toggleButtonState(submitButtonElement, this._formElement.checkValidity(), this._configFormSelector);
 
-    this._formElement.addEventListener('submit', (evt) => {
+    this._formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
-    });
+    }.bind(this));
     [...inputsList].forEach((inputItem) => {
-      inputItem.addEventListener('input', () => {
+      inputItem.addEventListener('input', function () {
         this._toggleButtonState(submitButtonElement, this._formElement.checkValidity(), this._configFormSelector);
         this._checkInputValidity(inputItem, this._formElement, this._configFormSelector);
-      })
+      }.bind(this))
     })
   }
 

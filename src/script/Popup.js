@@ -26,8 +26,10 @@ export default class Popup {
     this._closeIcon.addEventListener('click', function () {
       this.close();
     }.bind(this));
-    this._popupElement.addEventListener('click', function () {
-      this.close();
+    this._popupElement.addEventListener('click', function (evt) {
+      if (evt.target.classList.contains('popup')) {
+        this.close();
+      }
     }.bind(this));
     document.onkeydown = this._handleEscClose.bind(this);
   }

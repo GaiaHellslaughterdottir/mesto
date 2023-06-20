@@ -10,73 +10,8 @@ import '../pages/index.css';
 
 let popupWithImage;
 let userInfo;
-
-/**
- * Открытие всплывающего окна
- * @param popup - вслывающее окно
- */
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.onkeydown = function (evt) {
-    if (evt.keyCode === data.keyEscCode) {
-      const openedPopup = document.querySelector('.popup_opened');
-      if (openedPopup) {
-        closePopup(openedPopup);
-      }
-    }
-  };
-}
-
-/**
- * Закрытие всплывающего окна
- * @param popup - всплывающее окно
- */
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.onkeydown = null;
-}
-
-/**
- * Обработчик события открытия окна редактирования профиля
- */
-function handleOpenProfilePopup() {
-  const userInfoValues = userInfo.getUserInfo();
-  data.formFieldName.value = userInfoValues.name;
-  data.formFieldVocation.value = userInfoValues.info;
-  openPopup(data.profilePopup);
-}
-
-/**
- * Обработчик события сохрания информации профиля
- * @param evt - событие
- */
-function handleFormProfileSubmit(evt) {
-  evt.preventDefault();
-  const userInfoValues = {};
-  userInfoValues.name = data.formFieldName.value;
-  userInfoValues.info = data.formFieldVocation.value;
-  userInfo.setUserInfo(userInfoValues);
-  closePopup(data.profilePopup);
-}
-
-
-/**
- * Обработчик события открытия окна добавления места
- */
-function handlerOpenPlaceEditPopup() {
-  data.placeFieldName.closest('.form').reset();
-  openPopup(data.placePopup);
-  data.placePopupForm.formValidator.resetForm();
-}
-
-/**
- * Обработчик события закрытия всплывающего окна по крестику
- * @param evt - событие
- */
-function handleClosePopup(evt) {
-  const popup = evt.target.closest('.popup');
-  closePopup(popup);
-}
+let popupProfile;
+let popupPlace;
 
 /**
  * Функция создания новой карточки
@@ -86,29 +21,6 @@ function handleClosePopup(evt) {
  */
 function createCard(name, link) {
   return new Card({name, link}, '#card-template', openCardCallback);
-}
-
-/**
- * Обработчик события создания карточки
- * @param evt - событие
- */
-function handleFormPlaceSubmit(evt) {
-  evt.preventDefault();
-  const name = data.placeFieldName.value;
-  const link = data.placeFieldImage.value;
-  const card = createCard(name, link);
-  data.cardsContainer.prepend(card.createCardElement());
-  closePopup(data.placePopup);
-}
-
-/**
- * Обработчик события клика мышкой на оверлей окна
- * @param evt - событие
- */
-function handleOverlayClick(evt) {
-  if (!evt.target.classList.contains('popup__container')) {
-    closePopup(evt.target);
-  }
 }
 
 /**
@@ -131,13 +43,27 @@ function init() {
 
   userInfo = new UserInfo('.profile__info-name', '.profile__info-vocation');
 
-  //Добавление слушателя на кнопки отправки форм
-  data.profilePopupForm.addEventListener('submit', handleFormProfileSubmit);
-  data.placePopupForm.addEventListener('submit', handleFormPlaceSubmit);
+  popupProfile = new PopupWithForm('#profile-popup', function (values) {
+    userInfo.setUserInfo(values);
+    popupProfile.close();
+  });
+  popupProfile.setEventListeners();
 
-  //Добавление слушателя на поля ввода
-  data.profileEditButton.addEventListener('click', handleOpenProfilePopup);
-  data.profileAddPlaceButton.addEventListener('click', handlerOpenPlaceEditPopup);
+  popupPlace = new PopupWithForm('#place-popup', function (values) {
+    //userInfo.setUserInfo(values);
+    popupPlace.close();
+  });
+  popupPlace.setEventListeners();
+
+  data.profileEditButton.addEventListener('click', function () {
+    const userInfoValues = userInfo.getUserInfo();
+    popupProfile.open(userInfoValues);
+  });
+
+  data.profileAddPlaceButton.addEventListener('click', function () {
+    popupPlace.reset();
+    popupPlace.open();
+  });
 
   //Создание галереи предустановленным набором карточек
   data.initialCards.forEach(card => {
@@ -145,11 +71,6 @@ function init() {
     const cardElement = cardObject.createCardElement();
     data.cardsContainer.prepend(cardElement);
   });
-
-  //Включение валидации всех форм
-  [...document.querySelectorAll(data.configFormSelector.formSelector)].forEach((formItem) => {
-    new FormValidator(data.configFormSelector, formItem).enableValidation();
-  })
 }
 
 init();
