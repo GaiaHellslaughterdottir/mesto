@@ -1,27 +1,16 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
-
-import * as data from "./constants.js";
-
+import Card from "../components/Card.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import Section from "../components/Section.js";
+import * as data from "../components/constants.js";
 import '../pages/index.css';
 
 let popupWithImage;
 let userInfo;
 let popupProfile;
 let popupPlace;
-
-/**
- * Функция создания новой карточки
- * @param name
- * @param link
- * @returns {Card}
- */
-function createCard(name, link) {
-  return new Card({name, link}, '#card-template', openCardCallback);
-}
+let placeSection;
 
 /**
  * Функция открытия окна карточки с увеличенным изображением
@@ -50,7 +39,8 @@ function init() {
   popupProfile.setEventListeners();
 
   popupPlace = new PopupWithForm('#place-popup', function (values) {
-    //userInfo.setUserInfo(values);
+    const newCard = new Card(values, '#card-template', openCardCallback);
+    placeSection.addItem(newCard.createCardElement());
     popupPlace.close();
   });
   popupPlace.setEventListeners();
@@ -61,16 +51,17 @@ function init() {
   });
 
   data.profileAddPlaceButton.addEventListener('click', function () {
-    popupPlace.reset();
     popupPlace.open();
   });
 
-  //Создание галереи предустановленным набором карточек
-  data.initialCards.forEach(card => {
-    const cardObject = createCard(card.name, card.link);
-    const cardElement = cardObject.createCardElement();
-    data.cardsContainer.prepend(cardElement);
-  });
+  const sectionParams = {
+    items: data.initialCards,
+    renderer: function (cardObject) {
+      placeSection.addItem(cardObject.createCardElement());
+    }
+  };
+  placeSection = new Section(sectionParams, '.elements');
+  placeSection.generate(openCardCallback);
 }
 
 init();

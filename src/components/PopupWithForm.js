@@ -1,6 +1,6 @@
-import Popup from "./Popup";
-import * as data from "./constants";
-import FormValidator from "./FormValidator";
+import Popup from "./Popup.js";
+import * as data from "./constants.js";
+import FormValidator from "./FormValidator.js";
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, callbackSubmitForm) {
@@ -38,9 +38,6 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
-  }
-
-  reset() {
     this._popupForm.reset();
     this._validator.resetForm();
   }

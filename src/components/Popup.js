@@ -1,4 +1,4 @@
-import * as data from "./constants";
+import * as data from "./constants.js";
 
 export default class Popup {
   constructor(popupSelector) {
@@ -7,10 +7,12 @@ export default class Popup {
   }
 
   open() {
+    document.onkeydown = this._handleEscClose.bind(this);
     this._popupElement.classList.add('popup_opened');
   }
 
   close() {
+    document.onkeydown = null;
     this._popupElement.classList.remove('popup_opened');
   }
 
@@ -31,6 +33,6 @@ export default class Popup {
         this.close();
       }
     }.bind(this));
-    document.onkeydown = this._handleEscClose.bind(this);
+
   }
 }

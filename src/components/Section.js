@@ -1,5 +1,4 @@
-import * as data from "./constants";
-import Card from "./Card";
+import Card from "./Card.js";
 
 export default class Section {
   constructor({items, renderer}, containerSelector) {
@@ -9,7 +8,7 @@ export default class Section {
     this._containerElement = document.querySelector(this._containerSelector);
   }
 
-  generate() {
+  generate(openCardCallback) {
     this._items.forEach(card => {
       const cardObject = new Card(card, '#card-template', openCardCallback);
       this._renderer(cardObject);
