@@ -53,10 +53,10 @@
       <form class="form" name="form" novalidate>
         <h3 class="form__title">Редактировать профиль</h3>
         <input minlength="2" maxlength="40" type="text" name="name" class="form__field" id="form__field-name"
-               placeholder="Жак-Ив Кусто" required>
+               placeholder="Имя" required>
         <span id="name-error" class="form__error"></span>
         <input minlength="2" maxlength="200" type="text" name="vocation" class="form__field" id="form__field-vocation"
-               placeholder="Исследователь океана" required>
+               placeholder="О себе" required>
         <span id="vocation-error" class="form__error"></span>
         <button class="form__button-submit" type="submit">Сохранить</button>
       </form>
@@ -79,7 +79,7 @@
     </div>
   </div>
 
-  <div class="popup" id="place-image-popup">
+  <div class="popup popup_image-overlay" id="place-image-popup">
     <div class="popup__container popup__container_no-background">
       <button class="popup__close-icon" type="button"></button>
       <div class="place-info">
