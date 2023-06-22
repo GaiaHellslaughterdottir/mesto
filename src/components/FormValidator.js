@@ -7,6 +7,7 @@ export default class FormValidator {
   constructor(configFormSelector, formElement) {
     this._configFormSelector = configFormSelector;
     this._formElement = formElement;
+    this._submitButtonElement = this._formElement.querySelector(this._configFormSelector.submitButtonSelector);
     formElement.formValidator = this;
   }
 
@@ -21,8 +22,7 @@ export default class FormValidator {
    * Функция приведения формы в исходное состояние
    */
   resetForm() {
-    this._toggleButtonState(this._formElement.querySelector(this._configFormSelector.submitButtonSelector),
-      false, this._configFormSelector);
+    this._toggleButtonState(this._submitButtonElement,false);
   }
 
   /**
@@ -30,7 +30,7 @@ export default class FormValidator {
    */
   _setEventListener() {
     const inputsList = this._formElement.querySelectorAll(this._configFormSelector.inputSelector);
-    const submitButtonElement = this._formElement.querySelector(this._configFormSelector.submitButtonSelector);
+    const submitButtonElement = this._submitButtonElement;
 
     this._toggleButtonState(submitButtonElement, this._formElement.checkValidity(), this._configFormSelector);
 
@@ -90,9 +90,9 @@ export default class FormValidator {
    */
   _toggleButtonState(buttonElement, validity) {
     if (validity === false) {
-      this._disabledButton(buttonElement, this._configFormSelector);
+      this._disabledButton(buttonElement);
     } else {
-      this._enabledButton(buttonElement, this._configFormSelector);
+      this._enabledButton(buttonElement);
     }
   }
 

@@ -1,23 +1,24 @@
-import * as data from "./constants.js";
+import {keyEscCode} from "../utils/constants";
 
 export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
     this._closeIcon = this._popupElement.querySelector('.popup__close-icon');
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   open() {
-    document.onkeydown = this._handleEscClose.bind(this);
+    document.addEventListener('keydown', this._handleEscClose);
     this._popupElement.classList.add('popup_opened');
   }
 
   close() {
-    document.onkeydown = null;
+    document.removeEventListener('keydown', this._handleEscClose);
     this._popupElement.classList.remove('popup_opened');
   }
 
   _handleEscClose(evt) {
-    if (evt.keyCode === data.keyEscCode) {
+    if (evt.key === keyEscCode) {
       if (this._popupElement.classList.contains('popup_opened')) {
         this.close();
       }
@@ -33,6 +34,5 @@ export default class Popup {
         this.close();
       }
     }.bind(this));
-
   }
 }

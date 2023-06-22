@@ -3,24 +3,24 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
-import * as data from "../components/constants.js";
+import * as data from "../utils/constants.js";
 import '../pages/index.css';
+import FormValidator from "../components/FormValidator";
 
 let popupWithImage;
 let userInfo;
 let popupProfile;
 let popupPlace;
 let placeSection;
+let profileFormValidator;
+let placeFormValidator;
 
 /**
  * Функция открытия окна карточки с увеличенным изображением
- * @param cardElement
+ * @param imageInfo - информация об изображении
  */
-function openCardCallback(cardElement) {
-  const src = cardElement.querySelector('.element__image').src;
-  const alt = cardElement.querySelector('.element__image').alt;
-  const title = cardElement.querySelector('.element__place').textContent;
-  popupWithImage.open({src, alt, title});
+function openCardCallback(imageInfo) {
+  popupWithImage.open(imageInfo);
 }
 
 /**
@@ -34,34 +34,43 @@ function init() {
 
   popupProfile = new PopupWithForm('#profile-popup', function (values) {
     userInfo.setUserInfo(values);
-    popupProfile.close();
+    popupProfile.close(function () {
+      profileFormValidator.resetForm();
+    });
   });
+  profileFormValidator = new FormValidator(data.configFormSelector, popupProfile.getFormElement());
   popupProfile.setEventListeners();
 
   popupPlace = new PopupWithForm('#place-popup', function (values) {
-    const newCard = new Card(values, '#card-template', openCardCallback);
-    placeSection.addItem(newCard.createCardElement());
-    popupPlace.close();
+    placeSection.renderCard({name: values['place-name'], link: values.image});
+    popupPlace.close(function () {
+      placeFormValidator.resetForm();
+    });
   });
+  placeFormValidator = new FormValidator(data.configFormSelector, popupPlace.getFormElement());
   popupPlace.setEventListeners();
 
   data.profileEditButton.addEventListener('click', function () {
     const userInfoValues = userInfo.getUserInfo();
-    popupProfile.open(userInfoValues);
+    popupProfile.fillFormValue(userInfoValues);
+    profileFormValidator.enableValidation();
+    popupProfile.open();
   });
 
   data.profileAddPlaceButton.addEventListener('click', function () {
+    placeFormValidator.enableValidation();
     popupPlace.open();
   });
 
   const sectionParams = {
     items: data.initialCards,
-    renderer: function (cardObject) {
+    renderer: function (card) {
+      const cardObject = new Card(card, '#card-template', openCardCallback);
       placeSection.addItem(cardObject.createCardElement());
     }
   };
   placeSection = new Section(sectionParams, '.elements');
-  placeSection.generate(openCardCallback);
+  placeSection.generateInitialCard();
 }
 
 init();

@@ -32,9 +32,12 @@ export default class Card {
    */
   createCardElement() {
     this._cardElement = this._getTemplate();
-    this._cardElement.querySelector('.element__place').textContent = this._name;
-    this._cardElement.querySelector('.element__image').src = this._link;
-    this._cardElement.querySelector('.element__image').alt = this._description;
+    this._imageElement = this._cardElement.querySelector('.element__image');
+    this._placeElement = this._cardElement.querySelector('.element__place');
+    this._likeElement = this._cardElement.querySelector('.element__like');
+    this._placeElement.textContent = this._name;
+    this._imageElement.src = this._link;
+    this._imageElement.alt = this._description;
     this._setEventListeners();
     return this._cardElement;
   }
@@ -44,11 +47,10 @@ export default class Card {
    * @private
    */
   _setEventListeners() {
-    this._cardElement.querySelector('.element__image').addEventListener('click', this._handleOpenImagePopup.bind(this));
-    this._cardElement.querySelector('.element__like').addEventListener('click', this._handleToggleLike.bind(this));
+    this._imageElement.addEventListener('click', this._handleOpenImagePopup.bind(this));
+    this._likeElement.addEventListener('click', this._handleToggleLike.bind(this));
     this._cardElement.querySelector('.element__basket').addEventListener('click', this._handleRemoveCard.bind(this));
   }
-
 
   /**
    * Обработчик события открытия окна изображения места
@@ -56,22 +58,23 @@ export default class Card {
    */
   _handleOpenImagePopup(evt) {
     evt.preventDefault();
-    this._openCardCallback(evt.target.parentElement);
+    const src = this._imageElement.src;
+    const alt = this._imageElement.alt;
+    const title = this._placeElement.textContent;
+    this._openCardCallback({src, alt, title});
   }
 
   /**
    * Обработчик события удаления карточки из галереи
-   * @param evt - событие
    */
-  _handleRemoveCard(evt) {
-    evt.target.closest('.element').remove();
+  _handleRemoveCard() {
+    this._cardElement.remove();
   }
 
   /**
    * Обработчик события смены состояния кнопки лайк
-   * @param evt - событие
    */
-  _handleToggleLike(evt) {
-    evt.target.classList.toggle('element__like_active');
+  _handleToggleLike() {
+    this._likeElement.classList.toggle('element__like_active');
   }
 }

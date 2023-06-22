@@ -1,13 +1,10 @@
 import Popup from "./Popup.js";
-import * as data from "./constants.js";
-import FormValidator from "./FormValidator.js";
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, callbackSubmitForm) {
     super(popupSelector);
     this._popupForm = this._popupElement.querySelector('.form');
     this._callbackSubmitForm = callbackSubmitForm;
-    this._validator = new FormValidator(data.configFormSelector, this._popupForm);
   }
 
   _getInputValues() {
@@ -26,19 +23,23 @@ export default class PopupWithForm extends Popup {
     }.bind(this));
   }
 
-  open(values) {
+  fillFormValue(values) {
     if (values !== undefined) {
       for (const [key, value] of Object.entries(values)) {
         this._popupForm.elements[key].value = value;
       }
     }
-    super.open();
-    this._validator.enableValidation();
   }
 
-  close() {
+  close(closeCallback) {
     super.close();
     this._popupForm.reset();
-    this._validator.resetForm();
+    if (closeCallback !== undefined) {
+      closeCallback();
+    }
+  }
+
+  getFormElement() {
+    return this._popupForm;
   }
 }
