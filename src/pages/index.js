@@ -34,31 +34,31 @@ function init() {
 
   popupProfile = new PopupWithForm('#profile-popup', function (values) {
     userInfo.setUserInfo(values);
-    popupProfile.close(function () {
-      profileFormValidator.resetForm();
-    });
+    popupProfile.close();
+    profileFormValidator.resetForm();
   });
   profileFormValidator = new FormValidator(data.configFormSelector, popupProfile.getFormElement());
+  profileFormValidator.enableValidation();
   popupProfile.setEventListeners();
 
   popupPlace = new PopupWithForm('#place-popup', function (values) {
     placeSection.renderCard({name: values['place-name'], link: values.image});
-    popupPlace.close(function () {
-      placeFormValidator.resetForm();
-    });
+    popupPlace.close();
+    placeFormValidator.resetForm();
   });
   placeFormValidator = new FormValidator(data.configFormSelector, popupPlace.getFormElement());
+  placeFormValidator.enableValidation();
   popupPlace.setEventListeners();
 
   data.profileEditButton.addEventListener('click', function () {
     const userInfoValues = userInfo.getUserInfo();
     popupProfile.fillFormValue(userInfoValues);
-    profileFormValidator.enableValidation();
+    profileFormValidator.resetForm();
     popupProfile.open();
   });
 
   data.profileAddPlaceButton.addEventListener('click', function () {
-    placeFormValidator.enableValidation();
+    placeFormValidator.resetForm();
     popupPlace.open();
   });
 

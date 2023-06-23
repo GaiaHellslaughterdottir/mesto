@@ -9,6 +9,7 @@ export default class FormValidator {
     this._formElement = formElement;
     this._submitButtonElement = this._formElement.querySelector(this._configFormSelector.submitButtonSelector);
     formElement.formValidator = this;
+    this._inputList = this._formElement.querySelectorAll(this._configFormSelector.inputSelector);
   }
 
   /**
@@ -22,14 +23,16 @@ export default class FormValidator {
    * Функция приведения формы в исходное состояние
    */
   resetForm() {
-    this._toggleButtonState(this._submitButtonElement,false);
+    this._toggleButtonState(this._submitButtonElement,this._formElement.checkValidity());
+    [...this._inputList].forEach((inputItem) => {
+        this._hideError(inputItem, this._formElement.querySelector(`#${inputItem.name}-error`));
+    })
   }
 
   /**
    * Обработчик событий для форм и для полей ввода
    */
   _setEventListener() {
-    const inputsList = this._formElement.querySelectorAll(this._configFormSelector.inputSelector);
     const submitButtonElement = this._submitButtonElement;
 
     this._toggleButtonState(submitButtonElement, this._formElement.checkValidity(), this._configFormSelector);
@@ -37,7 +40,7 @@ export default class FormValidator {
     this._formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
     }.bind(this));
-    [...inputsList].forEach((inputItem) => {
+    [...this._inputList].forEach((inputItem) => {
       inputItem.addEventListener('input', function () {
         this._toggleButtonState(submitButtonElement, this._formElement.checkValidity(), this._configFormSelector);
         this._checkInputValidity(inputItem, this._formElement, this._configFormSelector);
@@ -62,7 +65,7 @@ export default class FormValidator {
    */
   _hideError(inputElement, errorElement) {
     inputElement.classList.remove(this._configFormSelector.inputErrorClass);
-    errorElement.textContent = inputElement.validationMessage;
+    errorElement.textContent = '';
   }
 
   /**

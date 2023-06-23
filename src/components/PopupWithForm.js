@@ -31,12 +31,9 @@ export default class PopupWithForm extends Popup {
     }
   }
 
-  close(closeCallback) {
+  close() {
     super.close();
     this._popupForm.reset();
-    if (closeCallback !== undefined) {
-      closeCallback();
-    }
   }
 
   getFormElement() {
