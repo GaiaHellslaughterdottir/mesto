@@ -4,13 +4,19 @@ export default class Card {
    * @param data - объект с данными
    * @param templateSelector - селектор шаблона карточки
    * @param openCardCallback - функция открытия окна карточки с увеличенным изображением
+   * @param removeCardCallback
+   * @param toggleLike
    */
-  constructor(data, templateSelector, openCardCallback) {
+  constructor(data, templateSelector, openCardCallback, removeCardCallback, toggleLike) {
     this._name = data.name;
     this._link = data.link;
+    this._id = data._id;
+    this._likes = data.likes;
     this._description = `Изображение ${data.name}`;
     this._templateSelector = templateSelector;
     this._openCardCallback = openCardCallback;
+    this._removeCardCallback = removeCardCallback;
+    this._toggleLike = toggleLike;
   }
 
   /**
@@ -38,8 +44,20 @@ export default class Card {
     this._placeElement.textContent = this._name;
     this._imageElement.src = this._link;
     this._imageElement.alt = this._description;
+    if (this._likes.length > 0) {
+      this._likeElement.classList.add('element__like_active')
+    }
     this._setEventListeners();
     return this._cardElement;
+  }
+
+  updateLikes(likes) {
+    this._likes = likes;
+    if (this._likes.length > 0) {
+      this._likeElement.classList.add('element__like_active')
+    } else {
+      this._likeElement.classList.remove('element__like_active')
+    }
   }
 
   /**
@@ -68,6 +86,7 @@ export default class Card {
    * Обработчик события удаления карточки из галереи
    */
   _handleRemoveCard() {
+    this._removeCardCallback(this._id);
     this._cardElement.remove();
   }
 
@@ -76,5 +95,6 @@ export default class Card {
    */
   _handleToggleLike() {
     this._likeElement.classList.toggle('element__like_active');
+    this._toggleLike(this._id, this._likeElement.classList.contains('element__like_active'));
   }
 }
