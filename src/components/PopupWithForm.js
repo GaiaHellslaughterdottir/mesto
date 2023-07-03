@@ -26,7 +26,9 @@ export default class PopupWithForm extends Popup {
   fillFormValue(values) {
     if (values !== undefined) {
       for (const [key, value] of Object.entries(values)) {
-        this._popupForm.elements[key].value = value;
+        if (this._popupForm.elements[key] !== undefined) {
+          this._popupForm.elements[key].value = value;
+        }
       }
     }
   }

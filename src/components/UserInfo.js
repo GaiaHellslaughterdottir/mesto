@@ -9,6 +9,8 @@ export default class UserInfo {
     const userInfo = {};
     userInfo['name'] = this._userNameElement.textContent;
     userInfo['vocation'] = this._userInfoElement.textContent;
+    userInfo['avatar'] = this._userAvatarElement.style.backgroundImage
+      .slice(4, -1).replace(/"/g, "");
     return userInfo;
   }
 

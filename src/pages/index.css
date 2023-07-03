@@ -26,6 +26,8 @@
 @import "../blocks/element/__like/_active/element__like_active.css";
 @import "../blocks/element/__place/element__place.css";
 @import "../blocks/element/__basket/element__basket.css";
+@import "../blocks/element/__like-wrapper/element__like-wrapper.css";
+@import "../blocks/element/__likes-count/element__likes-count.css";
 
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__copyright/footer__copyright.css";

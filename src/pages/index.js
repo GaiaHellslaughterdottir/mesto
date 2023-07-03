@@ -1,6 +1,7 @@
 import Card from "../components/Card.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupConfirm from "../components/PopupConfirm.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import * as data from "../utils/constants.js";
@@ -13,9 +14,12 @@ let popupWithImage;
 let userInfo;
 let popupProfile;
 let popupPlace;
+let popupAvatarEdit;
+let popupPlaceDelete;
 let placeSection;
 let profileFormValidator;
 let placeFormValidator;
+let avatarFormValidator;
 let cards = [];
 
 /**
@@ -27,7 +31,11 @@ function openCardCallback(imageInfo) {
 }
 
 function removeCardCallback(_id) {
-  api.deletePlace(_id);
+  popupPlaceDelete.open(function () {
+    popupPlaceDelete.close();
+    api.deletePlace(_id);
+    cards[_id].removeCard();
+  });
 }
 
 function toggleLike(_id, likeState) {
@@ -74,6 +82,25 @@ function init() {
   profileFormValidator.enableValidation();
   popupProfile.setEventListeners();
 
+  popupAvatarEdit = new PopupWithForm('#edit-avatar-popup', function (values) {
+    userInfo.setUserAvatar(values);
+    popupAvatarEdit.close();
+    avatarFormValidator.resetForm();
+    api.postUserProfileAvatar(values);
+  });
+  avatarFormValidator = new FormValidator(data.configFormSelector, popupAvatarEdit.getFormElement());
+  avatarFormValidator.enableValidation();
+  popupAvatarEdit.setEventListeners();
+
+
+
+
+  popupPlaceDelete = new PopupConfirm('#place-delete-popup');
+  popupPlaceDelete.setEventListeners();
+
+
+
+
   popupPlace = new PopupWithForm('#place-popup', function (values) {
     const card = {name: values['place-name'], link: values.image};
     api.postPlace(card, function (id) {
@@ -94,11 +121,17 @@ function init() {
     popupProfile.open();
   });
 
+  data.avatarEditButton.addEventListener('click', function () {
+    const userInfoValues = userInfo.getUserInfo();
+    popupAvatarEdit.fillFormValue(userInfoValues);
+    avatarFormValidator.resetForm();
+    popupAvatarEdit.open();
+  });
+
   data.profileAddPlaceButton.addEventListener('click', function () {
     placeFormValidator.resetForm();
     popupPlace.open();
   });
-
 
   api.getInitialCards(function (res) {
     const sectionParams = {
@@ -112,7 +145,6 @@ function init() {
     placeSection = new Section(sectionParams, '.elements');
     placeSection.generateInitialCard();
   })
-
 
 }
 

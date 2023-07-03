@@ -38,6 +38,17 @@ export default class Api {
     )
   }
 
+  postUserProfileAvatar({avatar}) {
+    fetch(this._baseUrl + '/users/me/avatar', {
+        headers: this._headers,
+        method: 'PATCH',
+        body: JSON.stringify({
+          avatar: avatar
+        })
+      }
+    )
+  }
+
   postPlace({name, link}, cardPosted) {
     fetch(this._baseUrl + '/cards', {
         headers: this._headers,

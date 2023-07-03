@@ -67,7 +67,9 @@ export default class Card {
   _setEventListeners() {
     this._imageElement.addEventListener('click', this._handleOpenImagePopup.bind(this));
     this._likeElement.addEventListener('click', this._handleToggleLike.bind(this));
-    this._cardElement.querySelector('.element__basket').addEventListener('click', this._handleRemoveCard.bind(this));
+    this._cardElement.querySelector('.element__basket').addEventListener('click', function () {
+      this._removeCardCallback(this._id);
+    }.bind(this));
   }
 
   /**
@@ -85,9 +87,8 @@ export default class Card {
   /**
    * Обработчик события удаления карточки из галереи
    */
-  _handleRemoveCard() {
-    this._removeCardCallback(this._id);
-    this._cardElement.remove();
+  removeCard() {
+   this._cardElement.remove();
   }
 
   /**

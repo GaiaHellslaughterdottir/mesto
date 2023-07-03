@@ -16,7 +16,11 @@
 
     <section class="profile">
       <div class="profile__avatar-and-info">
-        <div class="avatar"></div>
+        <div class="avatar__wrapper">
+          <div class="avatar"></div>
+          <button class="avatar-button"></button>
+        </div>
+
         <div class="profile__info">
           <h1 class="profile__info-name"></h1>
           <button class="profile__edit-button" type="button"></button>
@@ -34,7 +38,10 @@
           <img class="element__image" src="#" alt="Изображение места">
           <div class="element__place-and-like">
             <h2 class="element__place"></h2>
-            <button class="element__like" type="button"></button>
+            <div class="element__like-wrapper">
+              <button class="element__like" type="button"></button>
+              <span class="element__likes-count">44</span>
+            </div>
           </div>
         </article>
       </template>
@@ -86,6 +93,29 @@
         <img class="place-info__image" src="#" alt="Изображение места">
         <p class="place-info__title"></p>
       </div>
+    </div>
+  </div>
+
+  <div class="popup" id="place-delete-popup">
+    <div class="popup__container">
+      <button class="popup__close-icon" type="button"></button>
+      <div class="form">
+        <h3 class="form__title">Вы уверены?</h3>
+        <button class="form__button-submit" type="button">Да</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup" id="edit-avatar-popup">
+    <div class="popup__container">
+      <button class="popup__close-icon" type="button"></button>
+      <form class="form" name="form" novalidate>
+        <h3 class="form__title">Обновить аватар</h3>
+        <input type="url" name="avatar" class="form__field" id="form__field-edit-avatar"
+               placeholder="Ссылка на картинку" required>
+        <span id="avatar-error" class="form__error"></span>
+        <button class="form__button-submit" type="submit">Сохранить</button>
+      </form>
     </div>
   </div>
 
