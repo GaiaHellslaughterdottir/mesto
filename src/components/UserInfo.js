@@ -11,22 +11,21 @@ export default class UserInfo {
     userInfo['vocation'] = this._userInfoElement.textContent;
     userInfo['avatar'] = this._userAvatarElement.style.backgroundImage
       .slice(4, -1).replace(/"/g, "");
+    userInfo['_id'] = this._id;
     return userInfo;
   }
 
-  setUserInfo({name, vocation}) {
+  setUserInfo({name, vocation, _id}) {
     this._userNameElement.textContent = name;
     this._userInfoElement.textContent = vocation;
-  }
-
-  getUserAvatar() {
-    const userAvatar = {};
-    userAvatar['avatar'] = this._userAvatarElement.style.backgroundImage
-      .slice(4, -1).replace(/"/g, "");
-    return userAvatar;
+    this._id = _id;
   }
 
   setUserAvatar({avatar}) {
     this._userAvatarElement.style.backgroundImage = `url("${avatar}")`;
+  }
+
+  getId() {
+    return this._id;
   }
 }

@@ -5,7 +5,7 @@ export const keyEscCode = "Escape";
 export const profileEditButton = document.querySelector('.profile__edit-button');
 
 //Кнопка редактирования аватара
-export const avatarEditButton = document.querySelector('.avatar-button');
+export const avatarEditButton = document.querySelector('.avatar__button');
 
 //Кнопка создания новой карточки места
 export const profileAddPlaceButton = document.querySelector('.profile__add-place-button');

@@ -9,9 +9,18 @@ export default class Api {
       headers: this._headers,
       method: 'GET',
     })
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          console.log(`Ошибка получения карточек галереи: ${res.status}`);
+        }
+      })
       .then((res) => {
         renderCardItems(res);
+      })
+      .catch((err) => {
+        console.log(err);
       })
   }
 
@@ -20,9 +29,18 @@ export default class Api {
       headers: this._headers,
       method: 'GET',
     })
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          console.log(`Ошибка получения информации профиля пользователя: ${res.status}`);
+        }
+      })
       .then((res) => {
-        renderUserProfileInfo({name: res.name, vocation: res.about, avatar: res.avatar});
+        renderUserProfileInfo({name: res.name, vocation: res.about, avatar: res.avatar, _id: res._id});
+      })
+      .catch((err) => {
+        console.log(err);
       })
   }
 
@@ -36,6 +54,14 @@ export default class Api {
         })
       }
     )
+      .then((res) => {
+        if (!res.ok) {
+          console.log(`Ошибка сохранения информации профиля пользователя: ${res.status}`);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   postUserProfileAvatar({avatar}) {
@@ -47,6 +73,14 @@ export default class Api {
         })
       }
     )
+      .then((res) => {
+        if (!res.ok) {
+          console.log(`Ошибка сохранения аватара пользователя: ${res.status}`);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   postPlace({name, link}, cardPosted) {
@@ -59,18 +93,37 @@ export default class Api {
         })
       }
     )
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          console.log(`Ошибка сохранения карточки места: ${res.status}`);
+        }
+      })
       .then((res) => {
-        cardPosted(res._id);
+          cardPosted(res._id);
+      })
+      .catch((err) => {
+        console.log(err);
       })
   }
 
-  deletePlace(_id) {
+  deletePlace(_id, cardDeleted) {
     fetch(this._baseUrl + '/cards/' + _id, {
         headers: this._headers,
         method: 'DELETE'
       }
     )
+      .then((res) => {
+        if (res.ok) {
+          cardDeleted();
+        } else {
+          console.log(`Ошибка удаления карточки места: ${res.status}`);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   addPlaceLike(_id, updateLikes) {
@@ -79,9 +132,18 @@ export default class Api {
         method: 'PUT'
       }
     )
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          console.log(`Ошибка добавления лайка карточке места: ${res.status}`);
+        }
+      })
       .then((res) => {
-        updateLikes(res._id, res.likes);
+          updateLikes(res.likes);
+      })
+      .catch((err) => {
+        console.log(err);
       })
   }
 
@@ -91,11 +153,19 @@ export default class Api {
         method: 'DELETE'
       }
     )
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          console.log(`Ошибка удаления лайка карточке места: ${res.status}`);
+        }
+      })
       .then((res) => {
-        updateLikes(res._id, res.likes);
+          updateLikes(res.likes);
+      })
+      .catch((err) => {
+        console.log(err);
       })
   }
-
 }
 

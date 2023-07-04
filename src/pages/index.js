@@ -33,21 +33,22 @@ function openCardCallback(imageInfo) {
 function removeCardCallback(_id) {
   popupPlaceDelete.open(function () {
     popupPlaceDelete.close();
-    api.deletePlace(_id);
-    cards[_id].removeCard();
+    api.deletePlace(_id, function () {
+      cards[_id].removeCard();
+    });
   });
 }
 
-function toggleLike(_id, likeState) {
-  if (likeState) {
-    api.addPlaceLike(_id, function (likes) {
-      cards[_id].updateLikes(likes);
-    })
-  } else {
-    api.removePlaceLike(_id, function (likes) {
-      cards[_id].updateLikes(likes);
-    })
-  }
+function setLike(_id) {
+  api.addPlaceLike(_id, function (likes) {
+    cards[_id].updateLikes(likes);
+  })
+}
+
+function removeLike(_id) {
+  api.removePlaceLike(_id, function (likes) {
+    cards[_id].updateLikes(likes);
+  })
 }
 
 /**
@@ -61,7 +62,6 @@ function init() {
       'Content-Type': 'application/json'
     }
   });
-
 
   popupWithImage = new PopupWithImage('#place-image-popup');
   popupWithImage.setEventListeners();
@@ -92,14 +92,8 @@ function init() {
   avatarFormValidator.enableValidation();
   popupAvatarEdit.setEventListeners();
 
-
-
-
   popupPlaceDelete = new PopupConfirm('#place-delete-popup');
   popupPlaceDelete.setEventListeners();
-
-
-
 
   popupPlace = new PopupWithForm('#place-popup', function (values) {
     const card = {name: values['place-name'], link: values.image};
@@ -137,7 +131,7 @@ function init() {
     const sectionParams = {
       items: res,
       renderer: function (card) {
-        const cardObject = new Card(card, '#card-template', openCardCallback, removeCardCallback, toggleLike);
+        const cardObject = new Card(card, '#card-template', userInfo.getId(), openCardCallback, removeCardCallback, setLike, removeLike);
         cards[card._id] = cardObject;
         placeSection.addItem(cardObject.createCardElement());
       }
@@ -145,7 +139,6 @@ function init() {
     placeSection = new Section(sectionParams, '.elements');
     placeSection.generateInitialCard();
   })
-
 }
 
 init();
