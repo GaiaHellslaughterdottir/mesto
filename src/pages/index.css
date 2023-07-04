@@ -11,8 +11,8 @@
 
 @import "../blocks/profile/profile.css";
 @import "../blocks/avatar/avatar.css";
-@import "../blocks/avatar/__wrapper/avatar__wrapper.css";
-@import "../blocks/avatar/__button/avatar__button.css";
+@import "../blocks/profile/__avatar-wrapper/profile__avatar-wrapper.css";
+@import "../blocks/profile/__avatar-button/profile__avatar-button.css";
 
 @import "../blocks/profile/__info/profile__info.css";
 @import "../blocks/profile/__info-name/profile__info-name.css";
