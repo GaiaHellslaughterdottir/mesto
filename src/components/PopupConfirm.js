@@ -18,12 +18,12 @@ export default class PopupConfirm extends Popup {
     super.open();
   }
 
-  disableSubmitButton() {
+  startLoading() {
     this._submitButtonTitle = this._submitButtonElement.textContent;
     this._submitButtonElement.textContent = 'Сохранение...';
   }
 
-  enableSubmitButton() {
+  stopLoading() {
     this._submitButtonElement.textContent = this._submitButtonTitle;
   }
 }

@@ -24,12 +24,12 @@ export default class PopupWithForm extends Popup {
     }.bind(this));
   }
 
-  disableSubmitButton() {
+  startLoading() {
     this._submitButtonTitle = this._submitButtonElement.textContent;
     this._submitButtonElement.textContent = 'Сохранение...';
   }
 
-  enableSubmitButton() {
+  stopLoading() {
     this._submitButtonElement.textContent = this._submitButtonTitle;
   }
 

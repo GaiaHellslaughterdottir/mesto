@@ -32,7 +32,7 @@ function openCardCallback(imageInfo) {
 
 function removeCardCallback(_id) {
   popupPlaceDelete.open(function () {
-    popupPlaceDelete.disableSubmitButton();
+    popupPlaceDelete.startLoading();
     api.deletePlace(_id)
       .then(function () {
         popupPlaceDelete.close();
@@ -42,7 +42,7 @@ function removeCardCallback(_id) {
         console.log(err);
       })
       .finally(() => {
-        popupPlaceDelete.enableSubmitButton();
+        popupPlaceDelete.stopLoading();
       })
     ;
   });
@@ -106,17 +106,16 @@ function init() {
 
   popupProfile = new PopupWithForm('#profile-popup', function (values) {
     userInfo.setUserInfo(values);
-    popupProfile.disableSubmitButton();
+    popupProfile.startLoading();
     api.postUserProfileInfo(values)
       .then(function () {
         popupProfile.close();
-        profileFormValidator.resetForm();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
-        popupProfile.enableSubmitButton();
+        popupProfile.stopLoading();
       });
   });
 
@@ -126,7 +125,7 @@ function init() {
 
   popupAvatarEdit = new PopupWithForm('#edit-avatar-popup', function (values) {
     userInfo.setUserAvatar(values);
-    popupAvatarEdit.disableSubmitButton();
+    popupAvatarEdit.startLoading();
     api.postUserProfileAvatar(values)
       .then(function () {
         popupAvatarEdit.close();
@@ -135,7 +134,7 @@ function init() {
         console.log(err);
       })
       .finally(() => {
-        popupAvatarEdit.enableSubmitButton();
+        popupAvatarEdit.stopLoading();
       });
   });
   avatarFormValidator = new FormValidator(data.configFormSelector, popupAvatarEdit.getFormElement());
@@ -147,7 +146,7 @@ function init() {
 
   popupPlace = new PopupWithForm('#place-popup', function (values) {
     const card = {name: values['place-name'], link: values.image};
-    popupPlace.disableSubmitButton();
+    popupPlace.startLoading();
     api.postPlace(card)
       .then(function (id) {
         card._id = id;
@@ -159,7 +158,7 @@ function init() {
         console.log(err);
       })
       .finally(() => {
-        popupPlace.enableSubmitButton();
+        popupPlace.stopLoading();
       });
   });
   placeFormValidator = new FormValidator(data.configFormSelector, popupPlace.getFormElement());
